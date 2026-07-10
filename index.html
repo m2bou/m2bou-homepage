@@ -134,12 +134,57 @@
 
   /* ---------- Hero ---------- */
   .hero {
+    position: relative;
+    isolation: isolate;
     min-height: 68vh;
     padding: clamp(88px, 12vw, 160px) 0 96px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
+
+  /* 背景イラスト */
+  .hero::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: calc((100vw - 100%) / -2);
+  
+    width: min(62vw, 820px);
+    height: 100%;
+  
+    background-image: url('./assets/images/hero-bg.webp');
+    background-repeat: no-repeat;
+    background-position: center 28%;
+    background-size: cover;
+  
+    opacity: 0.18;
+    filter: saturate(0.8) contrast(0.9);
+  
+    /* 左側に向かってふわっと消す */
+    -webkit-mask-image:
+      linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 0.25) 20%,
+        black 50%,
+        black 100%
+      );
+  
+    mask-image:
+      linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 0.25) 20%,
+        black 50%,
+        black 100%
+      );
+  
+    pointer-events: none;
+  }
+
+  /* ー背景イラストここまで */
 
   .status {
     width: fit-content;
@@ -495,6 +540,13 @@
     .hero {
       min-height: auto;
       padding: 82px 0 72px;
+    }
+
+    .hero::before {
+      right: -45%;
+      width: 120%;
+      opacity: 0.08;
+      background-position: center 20%;
     }
 
     .hero h1 {
