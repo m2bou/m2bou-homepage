@@ -295,6 +295,22 @@
     border-top: 1px solid var(--ink);
   }
 
+  .card-with-thumb {
+  padding: 0;
+  overflow: hidden;
+  }
+
+  .card-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  
+  .card-content {
+    padding: 24px;
+  }
+
   .card {
     position: relative;
     min-height: 260px;
@@ -528,7 +544,7 @@
     <h1><span class="underline">M2坊</span>です。</h1>
     <!-- ★ 一言で「何をしている人か」を書く -->
     <p class="tagline">
-      SNS総フォロワー数10万人（2026年7月現在）のデジタルクリエイターです。
+      SNS総フォロワー数10万人（2026年7月現在）のデジタルクリエイターです。<br>
       ご依頼などがございましたらお気軽にお問い合わせください。
     </p>
     <div class="hero-actions">
@@ -561,17 +577,41 @@
     <h2>作品・活動例</h2>
     <div class="card-grid">
       <!-- ★ カードは自由に増減してOK。href は各プロジェクトのURLに -->
-      <a href="https://m2bou.fanbox.cc/" class="card" target="_blank" rel="noopener">
-        <h3>ファンクラブ運営</h3>
-        <p>主にデジタルイラストレーションを通して、ファンクラブ運営を行っています。</p>
+      <a href="https://m2bou.fanbox.cc/" class="card card-with-thumb" target="_blank" rel="noopener">
+          <img
+            src="fanclub-thumb.webp"
+            alt="ファンクラブ運営"
+            class="card-thumb"
+          >
+
+        <div class="card-content">
+          <h3>ファンクラブ運営</h3>
+          <p>主にデジタルイラストレーションを通して、ファンクラブ運営を行っています。</p>
+        </div>
       </a>
-      <a href="https://lit.link/m2bou" class="card" target="_blank" rel="noopener">
-        <h3>デジタル同人</h3>
-        <p>各種販売プラットフォームにて、デジタル漫画を制作・配信しています。</p>
+      <a href="https://lit.link/m2bou" class="card card-with-thumb" target="_blank" rel="noopener">
+        <img
+            src="doujin-thumb.webp"
+            alt="デジタル同人"
+            class="card-thumb"
+          >
+
+        <div class="card-content">
+          <h3>デジタル同人</h3>
+          <p>各種販売プラットフォームにて、デジタル漫画を制作・配信しています。</p>
+        </div>
       </a>
-      <a href="https://www.pixiv.net/users/79564594" class="card" target="_blank" rel="noopener">
-        <h3>SNS運営</h3>
-        <p>Xやpixivなどを中心にSNS総フォロワー数10万人（2026年7月現在）のアカウントを運営しております</p>
+      <a href="https://www.pixiv.net/users/79564594" class="card card-with-thumb" target="_blank" rel="noopener">
+        <img
+            src="sns-thumb.webp"
+            alt="SNS運営"
+            class="card-thumb"
+          >
+
+        <div class="card-content">
+          <h3>SNS運営</h3>
+          <p>Xやpixivなどを中心にSNS総フォロワー数10万人（2026年7月現在）のアカウントを運営しております</p>
+        </div>
       </a>
     </div>
   </section>
@@ -594,12 +634,12 @@
     <h2>取引先一覧</h2>
     <div class="contact-links">
       <!-- ★  -->
-      <p>ピクシブ株式会社</p>
-      <p>株式会社デジタルコマース</p>
-      <p>合同会社DMM.com</p>
-      <p>株式会社虎の穴</p>
-      <p>株式会社エイシス</p>
-      <p>株式会社スケブ</p>
+      <a href="https://www.pixiv.co.jp/" target="_blank" rel="noopener">ピクシブ株式会社</a>
+      <a href="https://digitalcommerce.co.jp/" target="_blank" rel="noopener">株式会社デジタルコマース</a>
+      <a href="https://dmm-corp.com/" target="_blank" rel="noopener">合同会社DMM.com</a>
+      <a href="https://www.toranoana.jp/company/about/profile.html" target="_blank" rel="noopener">株式会社虎の穴</a>
+      <a href="https://www.eisys.co.jp/" target="_blank" rel="noopener">株式会社エイシス</a>
+      <a href="https://skeb.co.jp/" target="_blank" rel="noopener">株式会社スケブ</a>
     </div>
   </section>
 
