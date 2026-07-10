@@ -9,7 +9,11 @@
 <!-- ★ ファビコンを用意したら以下のコメントを外して差し替えてください
 <link rel="icon" href="favicon.ico">
 -->
-
+<link
+  rel="preload"
+  as="image"
+  href="./assets/images/hero-bg.webp"
+>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -147,7 +151,7 @@
   .hero::before {
     content: "";
     position: absolute;
-    z-index: -2;
+    z-index: -1;
   
     top: 0;
     bottom: 0;
@@ -159,27 +163,37 @@
       url("./assets/images/hero-bg.webp")
       center 35% / cover no-repeat;
   
-    opacity: 0.25;
+    /* 最初は見えない */
+    opacity: 0;
+    transform: scale(1.04);
+    filter: blur(12px);
+  
+    /* ロード時にふわっと出す */
+    animation: hero-reveal 1.8s
+      cubic-bezier(0.22, 1, 0.36, 1)
+      0.3s
+      forwards;
+  
     pointer-events: none;
+    will-change: opacity, transform, filter;
   }
   
-  /* 左側をふわっと消す */
-  .hero::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
+  @keyframes hero-reveal {
+    0% {
+      opacity: 0;
+      transform: scale(1.08);
+      filter: blur(20px);
+    }
   
-    background: linear-gradient(
-      to right,
-      var(--bg) 0%,
-      var(--bg) 38%,
-      rgba(248, 248, 246, 0.85) 50%,
-      rgba(248, 248, 246, 0.3) 65%,
-      transparent 80%
-    );
+    40% {
+      opacity: 0.08;
+    }
   
-    pointer-events: none;
+    100% {
+      opacity: 0.22;
+      transform: scale(1);
+      filter: blur(0);
+    }
   }
   /* ー背景イラストここまで */
 
