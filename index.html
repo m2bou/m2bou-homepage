@@ -147,37 +147,36 @@
   .hero::before {
     content: "";
     position: absolute;
-    z-index: -1;
+    z-index: -2;
   
     top: 0;
     bottom: 0;
-  
-    /* 画面の右端まで広げる */
     right: calc(50% - 50vw);
   
     width: min(65vw, 900px);
   
-    background-image: url("./assets/images/hero-bg.webp");
-    background-repeat: no-repeat;
-    background-position: center 35%;
-    background-size: cover;
+    background:
+      url("./assets/images/hero-bg.webp")
+      center 35% / cover no-repeat;
   
-    opacity: 0.22;
+    opacity: 0.25;
+    pointer-events: none;
+  }
   
-    -webkit-mask-image: linear-gradient(
+  /* 左側をふわっと消す */
+  .hero::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+  
+    background: linear-gradient(
       to right,
-      transparent 0%,
-      rgba(0, 0, 0, 0.15) 15%,
-      rgba(0, 0, 0, 0.7) 40%,
-      black 65%
-    );
-  
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      rgba(0, 0, 0, 0.15) 15%,
-      rgba(0, 0, 0, 0.7) 40%,
-      black 65%
+      var(--bg) 0%,
+      var(--bg) 38%,
+      rgba(248, 248, 246, 0.85) 50%,
+      rgba(248, 248, 246, 0.3) 65%,
+      transparent 80%
     );
   
     pointer-events: none;
