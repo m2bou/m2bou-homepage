@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name | ホームページ</title>
+<meta name="description" content="ここにサイトの説明文を入れてください。検索結果に表示される紹介文です。">
+
+<!-- ★ ファビコンを用意したら以下のコメントを外して差し替えてください
+<link rel="icon" href="favicon.ico">
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --ink: #1b1f1d;
+    --ink-soft: #4b524d;
+    --line: #e4e1d8;
+    --accent: #3f6c51;      /* フォレストグリーン：見出しやリンクのアクセント */
+    --accent-warm: #c9a227; /* オークル：ステータスや強調に使う差し色 */
+    --card-bg: #ffffff;
+    --max-width: 880px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- ナビゲーション ---------- */
+  header.nav {
+    position: sticky;
+    top: 0;
+    background: rgba(251, 250, 247, 0.85);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    z-index: 10;
+  }
+  .nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ---------- ヒーロー ---------- */
+  .hero {
+    padding: 96px 0 72px;
+  }
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.03em;
+    margin-bottom: 24px;
+  }
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(63, 108, 81, 0.5);
+    animation: pulse 2.4s infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(63, 108, 81, 0.45); }
+    70%  { box-shadow: 0 0 0 8px rgba(63, 108, 81, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(63, 108, 81, 0); }
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1.1;
+    margin: 0 0 20px;
+    position: relative;
+    display: inline-block;
+  }
+  .hero h1 .underline {
+    position: relative;
+    white-space: nowrap;
+  }
+  .hero h1 .underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+    height: 0.3em;
+    width: 100%;
+    background: var(--accent-warm);
+    opacity: 0.35;
+    z-index: -1;
+    transform-origin: left;
+    animation: draw-in 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.2s both;
+  }
+  @keyframes draw-in {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .hero p.tagline {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin: 0 0 32px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+  .btn:hover { transform: translateY(-2px); }
+
+  /* ---------- セクション共通 ---------- */
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.9rem;
+    margin: 0 0 24px;
+  }
+
+  /* ---------- About ---------- */
+  .about p {
+    max-width: 62ch;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 0;
+    list-style: none;
+  }
+  .tags li {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Works ---------- */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 24px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: block;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(27, 31, 29, 0.08);
+  }
+  .card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    margin: 0 0 8px;
+  }
+  .card p {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 1.05rem;
+  }
+  .contact-links a {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .contact-links a::after {
+    content: "→";
+    transition: transform 0.15s ease;
+  }
+  .contact-links a:hover::after { transform: translateX(4px); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 32px 0;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .nav-links { gap: 16px; }
+    .hero { padding: 64px 0 48px; }
+    footer { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <!-- ★ サイト名/自分の名前に変更 -->
+    <a href="#top" class="logo">Your Name</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <!-- ---------- ヒーロー ---------- -->
+  <section class="hero" style="border-top:none;">
+    <div class="status">
+      <span class="status-dot"></span>
+      <!-- ★ 現在のステータスなど自由に -->
+      公開中 / 更新中
+    </div>
+    <h1><span class="underline">Your Name</span>です。</h1>
+    <!-- ★ 一言で「何をしている人か」を書く -->
+    <p class="tagline">
+      ここに1〜2文の自己紹介・肩書きを書きます。何をしていて、何が得意なのかが伝わる文章にしましょう。
+    </p>
+    <div class="hero-actions">
+      <a href="#works" class="btn btn-primary">Works を見る</a>
+      <a href="#contact" class="btn btn-secondary">連絡する</a>
+    </div>
+  </section>
+
+  <!-- ---------- About ---------- -->
+  <section id="about" class="about">
+    <p class="eyebrow">About</p>
+    <h2>自己紹介</h2>
+    <p>
+      ここに詳しめの自己紹介文を書きます。経歴、興味のあること、大切にしている考え方など、
+      訪れた人に伝えたいことを2〜3段落程度でまとめると読みやすくなります。
+    </p>
+    <!-- ★ スキルや興味のタグ。不要なら削除してOK -->
+    <ul class="tags">
+      <li>タグ1</li>
+      <li>タグ2</li>
+      <li>タグ3</li>
+      <li>タグ4</li>
+    </ul>
+  </section>
+
+  <!-- ---------- Works ---------- -->
+  <section id="works">
+    <p class="eyebrow">Works</p>
+    <h2>制作物・活動</h2>
+    <div class="card-grid">
+      <!-- ★ カードは自由に増減してOK。href は各プロジェクトのURLに -->
+      <a href="#" class="card">
+        <h3>プロジェクト名 1</h3>
+        <p>ここに1〜2行の説明文を入れます。</p>
+      </a>
+      <a href="#" class="card">
+        <h3>プロジェクト名 2</h3>
+        <p>ここに1〜2行の説明文を入れます。</p>
+      </a>
+      <a href="#" class="card">
+        <h3>プロジェクト名 3</h3>
+        <p>ここに1〜2行の説明文を入れます。</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ---------- Contact ---------- -->
+  <section id="contact">
+    <p class="eyebrow">Contact</p>
+    <h2>連絡先</h2>
+    <div class="contact-links">
+      <!-- ★ 実際のメールアドレス・SNSに差し替え -->
+      <a href="mailto:you@example.com">you@example.com</a>
+      <a href="https://x.com/yourhandle" target="_blank" rel="noopener">X (Twitter)</a>
+      <a href="https://github.com/yourhandle" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>&copy; 2026 Your Name</span>
+  <span>Built with Cloudflare Pages</span>
+</footer>
+
+</body>
+</html>
