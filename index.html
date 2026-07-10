@@ -381,57 +381,75 @@
     max-width: 760px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0;
     border-top: 1px solid var(--ink);
   }
-
+  
   .contact-links > * {
     min-height: 70px;
     margin: 0;
-    padding: 18px 4px;
+    padding: 18px 22px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--line);
     color: var(--ink);
     font-size: 0.95rem;
   }
-
+  
   .contact-links > *:nth-child(odd) {
     border-right: 1px solid var(--line);
-    padding-right: 22px;
   }
-
-  .contact-links > *:nth-child(even) { padding-left: 22px; }
-
+  
   .contact-links a {
-    position: relative;
     text-decoration: none;
     font-weight: 600;
     transition: color 160ms ease;
   }
-
+  
   .contact-links a::after {
     content: '↗';
     margin-left: auto;
     color: var(--accent);
   }
-
-  .contact-links a:hover { color: var(--accent); }
-
+  
+  .contact-links a:hover {
+    color: var(--accent);
+  }
+  
+  
   /* ---------- Platform providers ---------- */
-  #platform-providers .contact-links {
+  .provider-grid {
+    display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    max-width: none;
+    border-top: 1px solid var(--ink);
   }
-
-  #platform-providers .contact-links p {
+  
+  .provider-grid a {
+    min-height: 70px;
     padding: 20px 18px;
+    display: flex;
+    align-items: center;
     border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
     font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 160ms ease;
   }
-
-  #platform-providers .contact-links p:nth-child(3n) { border-right: 0; }
-  #platform-providers .contact-links p:nth-child(even) { padding-left: 18px; }
+  
+  .provider-grid a:nth-child(3n) {
+    border-right: 0;
+  }
+  
+  .provider-grid a::after {
+    content: '↗';
+    margin-left: auto;
+    color: var(--accent);
+  }
+  
+  .provider-grid a:hover {
+    color: var(--accent);
+  }
 
   /* ---------- Footer ---------- */
   footer {
@@ -619,26 +637,62 @@
   <section id="contact">
     <p class="eyebrow">Contact</p>
     <h2>連絡先</h2>
+  
     <div class="contact-links">
-      <!-- ★ 実際のメールアドレス・SNSに差し替え -->
       <p>emu.2.bou (at) gmail.com</p>
-      <a href="https://x.com/m2bou" target="_blank" rel="noopener">X (Twitter)</a>
-      <a href="https://www.pixiv.net/users/79564594" target="_blank" rel="noopener">pixiv</a>
+  
+      <a
+        href="https://x.com/m2bou"
+        target="_blank"
+        rel="noopener"
+      >
+        X (Twitter)
+      </a>
+  
+      <a
+        href="https://www.pixiv.net/users/79564594"
+        target="_blank"
+        rel="noopener"
+      >
+        pixiv
+      </a>
     </div>
   </section>
-
-  <!-- ---------- platform providers ---------- -->
+  
+  
+  <!-- ---------- Platform providers ---------- -->
   <section id="platform-providers">
-    <p class="eyebrow">Platform providers</p>
+    <p class="eyebrow">Platform Providers</p>
     <h2>取引先一覧</h2>
-    <div class="contact-links">
-      <!-- ★  -->
-      <a href="https://www.pixiv.co.jp/" target="_blank" rel="noopener">ピクシブ株式会社</a>
-      <a href="https://digitalcommerce.co.jp/" target="_blank" rel="noopener">株式会社デジタルコマース</a>
-      <a href="https://dmm-corp.com/" target="_blank" rel="noopener">合同会社DMM.com</a>
-      <a href="https://www.toranoana.jp/company/about/profile.html" target="_blank" rel="noopener">株式会社虎の穴</a>
-      <a href="https://www.eisys.co.jp/" target="_blank" rel="noopener">株式会社エイシス</a>
-      <a href="https://skeb.co.jp/" target="_blank" rel="noopener">株式会社スケブ</a>
+  
+    <div class="provider-grid">
+      <a href="https://www.pixiv.co.jp/" target="_blank" rel="noopener">
+        ピクシブ株式会社
+      </a>
+  
+      <a href="https://digitalcommerce.co.jp/" target="_blank" rel="noopener">
+        株式会社デジタルコマース
+      </a>
+  
+      <a href="https://dmm-corp.com/" target="_blank" rel="noopener">
+        合同会社DMM.com
+      </a>
+  
+      <a
+        href="https://www.toranoana.jp/company/about/profile.html"
+        target="_blank"
+        rel="noopener"
+      >
+        株式会社虎の穴
+      </a>
+  
+      <a href="https://www.eisys.co.jp/" target="_blank" rel="noopener">
+        株式会社エイシス
+      </a>
+  
+      <a href="https://skeb.co.jp/" target="_blank" rel="noopener">
+        株式会社スケブ
+      </a>
     </div>
   </section>
 
