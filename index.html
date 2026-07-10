@@ -32,7 +32,10 @@
 
   * { box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
+  html { 
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
 
   body {
     margin: 0;
@@ -44,6 +47,7 @@
     line-height: 1.8;
     letter-spacing: 0.01em;
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
   }
 
   ::selection {
