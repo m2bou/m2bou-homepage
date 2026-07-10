@@ -16,283 +16,489 @@
 
 <style>
   :root {
-    --bg: #fbfaf7;
-    --ink: #1b1f1d;
-    --ink-soft: #4b524d;
-    --line: #e4e1d8;
-    --accent: #3f6c51;      /* フォレストグリーン：見出しやリンクのアクセント */
-    --accent-warm: #c9a227; /* オークル：ステータスや強調に使う差し色 */
-    --card-bg: #ffffff;
-    --max-width: 880px;
+    --bg: #f5f5f3;
+    --surface: #ffffff;
+    --ink: #111111;
+    --muted: #707070;
+    --line: #d9d9d4;
+    --accent: #6757e8;
+    --accent-soft: #ebe8ff;
+    --max-width: 1080px;
   }
 
   * { box-sizing: border-box; }
 
   html { scroll-behavior: smooth; }
 
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
-  }
-
   body {
     margin: 0;
-    background: var(--bg);
+    background:
+      radial-gradient(circle at 85% 10%, rgba(103, 87, 232, 0.10), transparent 28rem),
+      var(--bg);
     color: var(--ink);
-    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-    line-height: 1.7;
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic UI', 'Noto Sans JP', sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
     -webkit-font-smoothing: antialiased;
   }
 
-  a { color: var(--accent); }
-  a:focus-visible, button:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
+  ::selection {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  a { color: inherit; }
+
+  a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
   }
 
   .wrap {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 24px;
+    width: min(calc(100% - 48px), var(--max-width));
+    margin-inline: auto;
   }
 
-  /* ---------- ナビゲーション ---------- */
+  /* ---------- Navigation ---------- */
   header.nav {
     position: sticky;
     top: 0;
-    background: rgba(251, 250, 247, 0.85);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid var(--line);
-    z-index: 10;
+    z-index: 20;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.10);
+    background: rgba(245, 245, 243, 0.88);
+    backdrop-filter: blur(14px);
   }
+
   .nav-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 16px 24px;
+    width: min(calc(100% - 48px), var(--max-width));
+    min-height: 72px;
+    margin-inline: auto;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    gap: 24px;
   }
+
   .logo {
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 1.1rem;
-    text-decoration: none;
     color: var(--ink);
-    letter-spacing: 0.02em;
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
+
+  .logo::before {
+    content: '●';
+    color: var(--accent);
+    margin-right: 9px;
+    font-size: 0.75em;
+  }
+
   .nav-links {
     display: flex;
-    gap: 28px;
-    list-style: none;
+    align-items: center;
+    gap: 24px;
     margin: 0;
     padding: 0;
+    list-style: none;
   }
-  .nav-links a {
-    text-decoration: none;
-    color: var(--ink-soft);
-    font-size: 0.92rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
-  }
-  .nav-links a:hover { color: var(--accent); }
 
-  /* ---------- ヒーロー ---------- */
-  .hero {
-    padding: 96px 0 72px;
+  .nav-links a {
+    position: relative;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
   }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -7px;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 180ms ease;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 68vh;
+    padding: clamp(88px, 12vw, 160px) 0 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .status {
+    width: fit-content;
+    margin-bottom: 24px;
+    padding: 7px 11px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.65);
+    color: var(--muted);
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--ink-soft);
-    letter-spacing: 0.03em;
-    margin-bottom: 24px;
+    font-size: 0.72rem;
+    line-height: 1;
   }
+
   .status-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 0 rgba(63, 108, 81, 0.5);
-    animation: pulse 2.4s infinite;
-  }
-  @keyframes pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(63, 108, 81, 0.45); }
-    70%  { box-shadow: 0 0 0 8px rgba(63, 108, 81, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(63, 108, 81, 0); }
+    background: #20a35a;
+    box-shadow: 0 0 0 4px rgba(32, 163, 90, 0.12);
   }
 
   .hero h1 {
-    font-family: 'Fraunces', serif;
+    max-width: 920px;
+    margin: 0 0 28px;
+    font-family: 'Public Sans', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 7.8rem);
     font-weight: 600;
-    font-size: clamp(2.4rem, 6vw, 4rem);
-    line-height: 1.1;
-    margin: 0 0 20px;
-    position: relative;
-    display: inline-block;
+    line-height: 0.92;
+    letter-spacing: -0.075em;
   }
+
   .hero h1 .underline {
     position: relative;
+    display: inline-block;
+    color: var(--accent);
     white-space: nowrap;
   }
+
   .hero h1 .underline::after {
-    content: "";
+    content: '';
     position: absolute;
-    left: 0;
-    bottom: 4px;
-    height: 0.3em;
-    width: 100%;
-    background: var(--accent-warm);
-    opacity: 0.35;
     z-index: -1;
-    transform-origin: left;
-    animation: draw-in 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.2s both;
-  }
-  @keyframes draw-in {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
+    left: 0.02em;
+    right: -0.04em;
+    bottom: 0.02em;
+    height: 0.12em;
+    background: currentColor;
+    opacity: 0.18;
   }
 
   .hero p.tagline {
-    font-size: 1.15rem;
-    color: var(--ink-soft);
-    max-width: 52ch;
-    margin: 0 0 32px;
+    max-width: 680px;
+    margin: 0 0 38px;
+    color: #4d4d4d;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.9;
   }
 
   .hero-actions {
     display: flex;
-    gap: 14px;
     flex-wrap: wrap;
+    gap: 12px;
   }
+
   .btn {
-    display: inline-block;
-    padding: 12px 22px;
-    border-radius: 4px;
+    min-height: 50px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ink);
+    border-radius: 0;
     text-decoration: none;
+    font-size: 0.88rem;
     font-weight: 600;
-    font-size: 0.95rem;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
   }
+
   .btn-primary {
     background: var(--ink);
-    color: var(--bg);
+    color: #fff;
   }
+
   .btn-secondary {
     background: transparent;
     color: var(--ink);
-    border: 1px solid var(--line);
   }
-  .btn:hover { transform: translateY(-2px); }
 
-  /* ---------- セクション共通 ---------- */
-  section { padding: 64px 0; border-top: 1px solid var(--line); }
-  .eyebrow {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin: 0 0 12px;
+  .btn:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 5px 5px 0 var(--accent);
   }
+
+  /* ---------- Section ---------- */
+  section:not(.hero) {
+    padding: 88px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .eyebrow {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
   h2 {
-    font-family: 'Fraunces', serif;
+    margin: 0 0 34px;
+    font-family: 'Public Sans', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
     font-weight: 600;
-    font-size: 1.9rem;
-    margin: 0 0 24px;
+    line-height: 1.05;
+    letter-spacing: -0.055em;
   }
 
   /* ---------- About ---------- */
-  .about p {
-    max-width: 62ch;
-    color: var(--ink-soft);
-    font-size: 1.02rem;
+  .about > p:not(.eyebrow) {
+    max-width: 760px;
+    margin: 0;
+    color: #454545;
+    font-size: clamp(1rem, 2vw, 1.15rem);
   }
+
   .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 24px;
+    gap: 9px;
+    margin: 30px 0 0;
     padding: 0;
     list-style: none;
   }
+
   .tags li {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    padding: 5px 12px;
+    padding: 8px 13px;
     border: 1px solid var(--line);
-    border-radius: 999px;
-    color: var(--ink-soft);
+    background: rgba(255, 255, 255, 0.45);
+    color: #555;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
   }
 
   /* ---------- Works ---------- */
   .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--ink);
   }
+
   .card {
-    background: var(--card-bg);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 24px;
-    text-decoration: none;
+    position: relative;
+    min-height: 260px;
+    padding: 26px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.55);
     color: var(--ink);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: block;
+    text-decoration: none;
+    transition: background 180ms ease, color 180ms ease;
   }
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(27, 31, 29, 0.08);
+
+  .card:first-child { border-left: 1px solid var(--line); }
+
+  .card::before {
+    position: absolute;
+    top: 22px;
+    left: 24px;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
   }
+
+  .card:nth-child(1)::before { content: '01 / FAN CLUB'; }
+  .card:nth-child(2)::before { content: '02 / DOUJIN'; }
+  .card:nth-child(3)::before { content: '03 / SOCIAL'; }
+
+  .card::after {
+    content: '↗';
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 180ms ease;
+  }
+
   .card h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.15rem;
-    margin: 0 0 8px;
+    margin: 0 0 10px;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
   }
+
   .card p {
-    font-size: 0.92rem;
-    color: var(--ink-soft);
     margin: 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.75;
   }
+
+  .card:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .card:hover p,
+  .card:hover::before { color: rgba(255, 255, 255, 0.78); }
+  .card:hover::after { transform: translate(3px, -3px); }
 
   /* ---------- Contact ---------- */
   .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    font-size: 1.05rem;
+    max-width: 760px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--ink);
   }
-  .contact-links a {
-    text-decoration: none;
-    display: inline-flex;
-    align-items: baseline;
-    gap: 10px;
-  }
-  .contact-links a::after {
-    content: "→";
-    transition: transform 0.15s ease;
-  }
-  .contact-links a:hover::after { transform: translateX(4px); }
 
+  .contact-links > * {
+    min-height: 70px;
+    margin: 0;
+    padding: 18px 4px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    font-size: 0.95rem;
+  }
+
+  .contact-links > *:nth-child(odd) {
+    border-right: 1px solid var(--line);
+    padding-right: 22px;
+  }
+
+  .contact-links > *:nth-child(even) { padding-left: 22px; }
+
+  .contact-links a {
+    position: relative;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 160ms ease;
+  }
+
+  .contact-links a::after {
+    content: '↗';
+    margin-left: auto;
+    color: var(--accent);
+  }
+
+  .contact-links a:hover { color: var(--accent); }
+
+  /* ---------- Platform providers ---------- */
+  #platform-providers .contact-links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: none;
+  }
+
+  #platform-providers .contact-links p {
+    padding: 20px 18px;
+    border-right: 1px solid var(--line);
+    font-size: 0.88rem;
+  }
+
+  #platform-providers .contact-links p:nth-child(3n) { border-right: 0; }
+  #platform-providers .contact-links p:nth-child(even) { padding-left: 18px; }
+
+  /* ---------- Footer ---------- */
   footer {
-    border-top: 1px solid var(--line);
-    padding: 32px 0;
-    font-size: 0.82rem;
-    color: var(--ink-soft);
+    width: min(calc(100% - 48px), var(--max-width));
+    margin-inline: auto;
+    padding: 34px 0 44px;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
+    gap: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
   }
 
-  @media (max-width: 640px) {
-    .nav-links { gap: 16px; }
-    .hero { padding: 64px 0 48px; }
+  @media (max-width: 820px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .card {
+      min-height: 220px;
+      border-left: 1px solid var(--line);
+    }
+
+    #platform-providers .contact-links {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #platform-providers .contact-links p:nth-child(3n) { border-right: 1px solid var(--line); }
+    #platform-providers .contact-links p:nth-child(2n) { border-right: 0; }
+  }
+
+  @media (max-width: 600px) {
+    .wrap,
+    .nav-inner,
+    footer {
+      width: min(calc(100% - 32px), var(--max-width));
+    }
+
+    .nav-inner { min-height: 64px; }
+    .logo { font-size: 0.78rem; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 0.72rem; }
+
+    .hero {
+      min-height: auto;
+      padding: 82px 0 72px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.4rem, 18vw, 5.4rem);
+      letter-spacing: -0.085em;
+    }
+
+    .hero p.tagline { line-height: 1.8; }
+    .hero-actions { flex-direction: column; }
+    .btn { width: 100%; }
+
+    section:not(.hero) { padding: 72px 0; }
+
+    .contact-links,
+    #platform-providers .contact-links {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-links > *,
+    .contact-links > *:nth-child(odd),
+    .contact-links > *:nth-child(even),
+    #platform-providers .contact-links p,
+    #platform-providers .contact-links p:nth-child(2n),
+    #platform-providers .contact-links p:nth-child(3n) {
+      padding: 16px 4px;
+      border-right: 0;
+    }
+
     footer { flex-direction: column; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      transition-duration: 0.001ms !important;
+      animation-duration: 0.001ms !important;
+    }
   }
 </style>
 </head>
@@ -355,15 +561,15 @@
     <h2>作品・活動例</h2>
     <div class="card-grid">
       <!-- ★ カードは自由に増減してOK。href は各プロジェクトのURLに -->
-      <a href="https://m2bou.fanbox.cc/" class="card">
+      <a href="https://m2bou.fanbox.cc/" class="card" target="_blank" rel="noopener">
         <h3>ファンクラブ運営</h3>
         <p>主にデジタルイラストレーションを通して、ファンクラブ運営を行っています。</p>
       </a>
-      <a href="https://lit.link/m2bou" class="card">
+      <a href="https://lit.link/m2bou" class="card" target="_blank" rel="noopener">
         <h3>デジタル同人</h3>
         <p>各種販売プラットフォームにて、デジタル漫画を制作・配信しています。</p>
       </a>
-      <a href="https://www.pixiv.net/users/79564594" class="card">
+      <a href="https://www.pixiv.net/users/79564594" class="card" target="_blank" rel="noopener">
         <h3>SNS運営</h3>
         <p>Xやpixivなどを中心にSNS総フォロワー数10万人（2026年7月現在）のアカウントを運営しております</p>
       </a>
