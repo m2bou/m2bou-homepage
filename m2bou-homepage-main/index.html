@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6MDHM4W6BH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6MDHM4W6BH');
+</script>
+  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M2坊|デジタルクリエイター</title>
+<meta name="description" content="M2坊のホームページへようこそ。主にデジタルペイントソフトを用いた同人活動等を行っています。">
+
+<!-- ★ ファビコンを用意したら以下のコメントを外して差し替えてください
+<link rel="icon" href="favicon.ico">
+-->
+<link
+  rel="preload"
+  as="image"
+  href="./assets/images/hero-bg.webp"
+>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="M2坊">
+<meta property="og:title" content="M2坊|デジタルクリエイター">
+<meta
+  property="og:description"
+  content="M2坊（えむにぼう）の公式サイトです。イラスト、同人誌、活動情報などを掲載しています。"
+>
+<meta property="og:url" content="https://m2bou.com/">
+<meta
+  property="og:image"
+  content="https://m2bou.com/assets/images/ogp-hero.webp"
+>
+<meta property="og:image:type" content="image/webp">
+<meta
+  property="og:image:alt"
+  content="M2坊公式サイトのメインビジュアル"
+>
+<meta property="og:locale" content="ja_JP">
+
+<!-- X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@m2bou_r18">
+<meta name="twitter:creator" content="@m2bou_r18">
+<meta name="twitter:title" content="M2坊|デジタルクリエイター">
+<meta
+  name="twitter:description"
+  content="M2坊（えむにぼう）の公式サイトです。イラスト、同人誌、活動情報などを掲載しています。"
+>
+<meta
+  name="twitter:image"
+  content="https://m2bou.com/assets/images/ogp-hero.webp"
+>
+<meta
+  name="twitter:image:alt"
+  content="M2坊公式サイトのメインビジュアル"
+>
+
+<style>
+  :root {
+    --bg: #f5f5f3;
+    --surface: #ffffff;
+    --ink: #111111;
+    --muted: #707070;
+    --line: #d9d9d4;
+    --accent: #6757e8;
+    --accent-soft: #ebe8ff;
+    --max-width: 1080px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { 
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(circle at 85% 10%, rgba(103, 87, 232, 0.10), transparent 28rem),
+      var(--bg);
+    color: var(--ink);
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic UI', 'Noto Sans JP', sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  a { color: inherit; }
+
+  a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  .wrap {
+    width: min(calc(100% - 48px), var(--max-width));
+    margin-inline: auto;
+  }
+
+  /* ---------- Navigation ---------- */
+  header.nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.10);
+    background: rgba(245, 245, 243, 0.88);
+    backdrop-filter: blur(14px);
+  }
+
+  .nav-inner {
+    width: min(calc(100% - 48px), var(--max-width));
+    min-height: 72px;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .logo {
+    color: var(--ink);
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .logo::before {
+    content: '●';
+    color: var(--accent);
+    margin-right: 9px;
+    font-size: 0.75em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav-links a {
+    position: relative;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -7px;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 180ms ease;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 68vh;
+    padding: clamp(88px, 12vw, 160px) 0 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* 背景イラスト */
+  .hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+  
+    top: 0;
+    bottom: 0;
+    right: calc(50% - 50vw);
+  
+    width: min(65vw, 900px);
+  
+    background:
+      url("./assets/images/hero-bg.webp")
+      center 35% / cover no-repeat;
+  
+    /* 最初は見えない */
+    opacity: 0;
+    transform: scale(1.04);
+    filter: blur(12px);
+  
+    /* ロード時にふわっと出す */
+    animation: hero-reveal 1.8s
+      cubic-bezier(0.22, 1, 0.36, 1)
+      0.3s
+      forwards;
+  
+    pointer-events: none;
+    will-change: opacity, transform, filter;
+  }
+  
+  @keyframes hero-reveal {
+    0% {
+      opacity: 0;
+      transform: scale(1.08);
+      filter: blur(20px);
+    }
+  
+    40% {
+      opacity: 0.08;
+    }
+  
+    100% {
+      opacity: 0.22;
+      transform: scale(1);
+      filter: blur(0);
+    }
+  }
+  /* ー背景イラストここまで */
+
+  .status {
+    width: fit-content;
+    margin-bottom: 24px;
+    padding: 7px 11px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.65);
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    line-height: 1;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #20a35a;
+    box-shadow: 0 0 0 4px rgba(32, 163, 90, 0.12);
+  }
+
+  .hero h1 {
+    max-width: 920px;
+    margin: 0 0 28px;
+    font-family: 'Public Sans', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 7.8rem);
+    font-weight: 600;
+    line-height: 0.92;
+    letter-spacing: -0.075em;
+  }
+
+  .hero h1 .underline {
+    position: relative;
+    display: inline-block;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .hero h1 .underline::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 0.02em;
+    right: -0.04em;
+    bottom: 0.02em;
+    height: 0.12em;
+    background: currentColor;
+    opacity: 0.18;
+  }
+
+  .hero p.tagline {
+    max-width: 680px;
+    margin: 0 0 38px;
+    color: #4d4d4d;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.9;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .btn {
+    min-height: 50px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+  }
+
+  .btn:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 5px 5px 0 var(--accent);
+  }
+
+  /* ---------- Section ---------- */
+  section:not(.hero) {
+    padding: 88px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .eyebrow {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0 0 34px;
+    font-family: 'Public Sans', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.055em;
+  }
+
+  /* ---------- About ---------- */
+  .about > p:not(.eyebrow) {
+    max-width: 760px;
+    margin: 0;
+    color: #454545;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin: 30px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tags li {
+    padding: 8px 13px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.45);
+    color: #555;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+  }
+
+  /* ---------- Works ---------- */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--ink);
+  }
+
+  .card-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  
+  .card-content {
+    padding: 24px;
+  }
+
+  .card {
+    position: relative;
+    min-height: 260px;
+    padding: 26px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--ink);
+    text-decoration: none;
+    transition: background 180ms ease, color 180ms ease;
+  }
+
+  .card.card-with-thumb {
+    padding: 0;
+  }
+
+  .card:first-child { border-left: 1px solid var(--line); }
+
+  .card::before {
+    position: absolute;
+    top: 22px;
+    left: 24px;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+  }
+
+  .card:nth-child(1)::before { content: '01 / FAN CLUB/DOUJIN'; }
+  .card:nth-child(2)::before { content: '02 / COMMISSION'; }
+  .card:nth-child(3)::before { content: '03 / SOCIAL MEDIA'; }
+
+  .card::after {
+    content: '↗';
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 180ms ease;
+  }
+
+  .card h3 {
+    margin: 0 0 10px;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+  }
+
+  .card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.75;
+  }
+
+  .card:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .card:hover p,
+  .card:hover::before { color: rgba(255, 255, 255, 0.78); }
+  .card:hover::after { transform: translate(3px, -3px); }
+
+  /* ---------- Contact ---------- */
+  .contact-links {
+    max-width: 760px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid var(--ink);
+  }
+  
+  .contact-links > * {
+    min-height: 70px;
+    margin: 0;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    font-size: 0.95rem;
+  }
+  
+  .contact-links > *:nth-child(odd) {
+    border-right: 1px solid var(--line);
+  }
+  
+  .contact-links a {
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 160ms ease;
+  }
+  
+  .contact-links a::after {
+    content: '↗';
+    margin-left: auto;
+    color: var(--accent);
+  }
+  
+  .contact-links a:hover {
+    color: var(--accent);
+  }
+  
+  
+  /* ---------- Platform providers ---------- */
+  .provider-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--ink);
+  }
+  
+  .provider-grid a {
+    min-height: 70px;
+    padding: 20px 18px;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+  
+  .provider-grid a:nth-child(3n) {
+    border-right: 0;
+  }
+  
+  .provider-grid a::after {
+    content: '↗';
+    margin-left: auto;
+    color: var(--accent);
+  }
+  
+  .provider-grid a:hover {
+    color: var(--accent);
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    width: min(calc(100% - 48px), var(--max-width));
+    margin-inline: auto;
+    padding: 34px 0 44px;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 820px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .card {
+      min-height: 220px;
+      border-left: 1px solid var(--line);
+    }
+
+    #platform-providers .contact-links {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #platform-providers .contact-links p:nth-child(3n) { border-right: 1px solid var(--line); }
+    #platform-providers .contact-links p:nth-child(2n) { border-right: 0; }
+  }
+
+  @media (max-width: 600px) {
+    .wrap,
+    .nav-inner,
+    footer {
+      width: min(calc(100% - 32px), var(--max-width));
+    }
+
+    .nav-inner { min-height: 64px; }
+    .logo { font-size: 0.78rem; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 0.72rem; }
+
+    .hero {
+      min-height: auto;
+      padding: 108px 0 72px;
+    }
+
+    .hero::before {
+      right: -45%;
+      width: 120%;
+      opacity: 0.08;
+      background-position: center 20%;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.4rem, 18vw, 5.4rem);
+      letter-spacing: -0.085em;
+      margin: 0 0 28px;
+    }
+
+    .hero p.tagline { line-height: 1.8; }
+    .hero-actions { flex-direction: column; }
+    .btn { width: 100%; }
+
+    section:not(.hero) { padding: 72px 0; }
+
+    .contact-links,
+    #platform-providers .contact-links {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-links > *,
+    .contact-links > *:nth-child(odd),
+    .contact-links > *:nth-child(even),
+    #platform-providers .contact-links p,
+    #platform-providers .contact-links p:nth-child(2n),
+    #platform-providers .contact-links p:nth-child(3n) {
+      padding: 16px 4px;
+      border-right: 0;
+    }
+
+    footer { flex-direction: column; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      transition-duration: 0.001ms !important;
+      animation-duration: 0.001ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <!-- ★ サイト名/自分の名前に変更 -->
+    <a href="#top" class="logo">M2坊のホームページ</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <!-- ---------- ヒーロー ---------- -->
+  <section class="hero" style="border-top:none;">
+    <!-- <div class="status">
+      <span class="status-dot"></span>
+      公開中
+    </div> -->
+    <h1><span class="underline">M2坊</span>です。</h1>
+    <!-- ★ 一言で「何をしている人か」を書く -->
+    <p class="tagline">
+      SNS総フォロワー数10万人（2026年7月現在）のデジタルクリエイターです。<br>
+      ご依頼などがございましたらお気軽にお問い合わせください。
+    </p>
+    <div class="hero-actions">
+      <a href="#works" class="btn btn-primary">作品・活動例 を見る</a>
+      <a href="#contact" class="btn btn-secondary">連絡する</a>
+    </div>
+  </section>
+
+  <!-- ---------- About ---------- -->
+  <section id="about" class="about">
+    <p class="eyebrow">About</p>
+    <h2>自己紹介</h2>
+    <p>
+      主にデジタルペイントソフトを用いて、SNSやファンクラブの運営、同人活動等を行っています。
+      コミッションなども受け付けております。
+    </p>
+    <!-- ★ スキルや興味のタグ。不要なら削除してOK -->
+    <ul class="tags">
+      <li>デジタルイラストレーション</li>
+      <li>デジタル漫画</li>
+      <li>SNS運営</li>
+      <li>ファンクラブ運営</li>
+      <li>コミッション</li>
+    </ul>
+  </section>
+
+  <!-- ---------- Works ---------- -->
+  <section id="works">
+    <p class="eyebrow">Works</p>
+    <h2>作品・活動例</h2>
+    <div class="card-grid">
+      <!-- ★ カードは自由に増減してOK。href は各プロジェクトのURLに -->
+      <a href="https://www.fanbox.cc/" class="card card-with-thumb" target="_blank" rel="noopener">
+          <img
+            src="./assets/images/fanclub-thumb.webp"
+            alt="ファンクラブ・デジタル同人"
+            class="card-thumb"
+          >
+
+        <div class="card-content">
+          <h3>ファンクラブ・デジタル同人</h3>
+          <p>主にデジタルイラストレーションおよび漫画を通して、ファンクラブ運営や同人活動等を行っています。</p>
+        </div>
+      </a>
+      <a href="https://skeb.jp/@m2bou" class="card card-with-thumb" target="_blank" rel="noopener">
+        <img
+            src="./assets/images/doujin-thumb.webp"
+            alt="コミッション"
+            class="card-thumb"
+          >
+
+        <div class="card-content">
+          <h3>コミッション</h3>
+          <p>デジタルイラストレーションや漫画等のご依頼を受け付けております。</p>
+        </div>
+      </a>
+      <a href="https://www.pixiv.net/users/79564594" class="card card-with-thumb" target="_blank" rel="noopener">
+        <img
+            src="./assets/images/sns-thumb.webp"
+            alt="SNS運営"
+            class="card-thumb"
+          >
+
+        <div class="card-content">
+          <h3>SNS運営</h3>
+          <p>SNS総フォロワー数10万人（2026年7月現在）のアカウントを運営しております。</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ---------- Contact ---------- -->
+  <section id="contact">
+    <p class="eyebrow">Contact</p>
+    <h2>連絡先</h2>
+  
+    <div class="contact-links">
+      <p>emu.2.bou (at) gmail.com</p>
+  
+      <a
+        href="https://x.com/m2bou"
+        target="_blank"
+        rel="noopener"
+      >
+        X (Twitter)
+      </a>
+  
+      <a
+        href="https://www.pixiv.net/users/79564594"
+        target="_blank"
+        rel="noopener"
+      >
+        pixiv
+      </a>
+    </div>
+  </section>
+  
+  
+  <!-- ---------- Platform providers ---------- -->
+  <section id="platform-providers">
+    <p class="eyebrow">Platform Providers</p>
+    <h2>取引先一覧</h2>
+  
+    <div class="provider-grid">
+      <a href="https://www.pixiv.co.jp/" target="_blank" rel="noopener">
+        ピクシブ株式会社
+      </a>
+  
+      <a href="https://digitalcommerce.co.jp/" target="_blank" rel="noopener">
+        株式会社デジタルコマース
+      </a>
+  
+      <a href="https://dmm-corp.com/" target="_blank" rel="noopener">
+        合同会社DMM.com
+      </a>
+  
+      <a
+        href="https://www.toranoana.jp/company/about/profile.html"
+        target="_blank"
+        rel="noopener"
+      >
+        株式会社虎の穴
+      </a>
+  
+      <a href="https://www.eisys.co.jp/" target="_blank" rel="noopener">
+        株式会社エイシス
+      </a>
+  
+      <a href="https://skeb.co.jp/" target="_blank" rel="noopener">
+        株式会社スケブ
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>&copy; 2026 M2坊のホームページ</span>
+  <span>Built with Cloudflare Pages</span>
+</footer>
+
+</body>
+</html>

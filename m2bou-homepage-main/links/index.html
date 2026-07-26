@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="ja">
+<head>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6MDHM4W6BH"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6MDHM4W6BH');
+  </script>
+
+  <meta name="robots" content="noindex,follow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f6f3">
+  <title>M2坊｜同人誌等リンク</title>
+  <meta name="description" content="M2坊の同人誌等へのリンクです。">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="M2坊">
+  <meta property="og:title" content="M2坊｜新作同人誌・過去作品リンクはこちら">
+  <meta property="og:description" content="同人誌はこちらから">
+  <meta property="og:url" content="https://m2bou.com/links/">
+  <meta property="og:image" content="https://m2bou.com/assets/images/ogp-links.webp">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- X(Twitter) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="M2坊｜新作同人誌・過去作品リンクはこちら">
+  <meta name="twitter:description" content="同人誌はこちらから">
+  <meta name="twitter:image" content="https://m2bou.com/assets/images/ogp-links.webp">
+
+  <style>
+    :root {
+      --bg: #f7f6f3;
+      --surface: #ffffff;
+      --text: #171717;
+      --muted: #74706a;
+      --line: #e6e2dc;
+      --accent: #d94b5b;
+      --accent-soft: #fff0f2;
+      --fanza: #ee2d2d;
+      --dlsite: #f3c400;
+      --max: 560px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --shadow: 0 18px 50px rgba(43, 35, 25, .07);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      background: var(--bg);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      font-feature-settings: "palt";
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 22px 16px max(48px, env(safe-area-inset-bottom));
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 2px 20px;
+    }
+
+    .profile__avatar {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 54px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #eee;
+      border: 2px solid #fff;
+      box-shadow: 0 5px 16px rgba(0, 0, 0, .10);
+    }
+
+    .profile__name {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.35;
+      letter-spacing: .01em;
+    }
+
+    .profile__copy {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .featured {
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .featured__head {
+      padding: 20px 18px 16px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #b93647;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .06em;
+    }
+
+    .featured__title {
+      margin: 10px 0 5px;
+      font-size: clamp(25px, 7vw, 32px);
+      line-height: 1.24;
+      letter-spacing: -.035em;
+    }
+
+    .featured__lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .cover-link {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      background: #ece9e4;
+      aspect-ratio: 1.44 / 1;
+    }
+
+    .cover-link img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .25s ease;
+    }
+
+    @media (hover: hover) {
+      .cover-link:hover img { transform: scale(1.015); }
+    }
+
+    .purchase {
+      padding: 15px;
+    }
+
+    .purchase__label {
+      margin: 0 0 9px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .store-grid.is-single {
+      grid-template-columns: 1fr;
+    }
+
+    .store-button {
+      min-height: 66px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 11px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      text-decoration: none;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+
+    .store-button:focus-visible,
+    .mini-store:focus-visible,
+    .support-link:focus-visible,
+    .social-link:focus-visible,
+    .all-works:focus-visible {
+      outline: 3px solid rgba(217, 75, 91, .24);
+      outline-offset: 3px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      padding: 12px;
+    }
+    
+    .store {
+        min-height: 58px;
+        border-radius: 13px;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 15px;
+        position: relative;
+    }
+    
+    .store small {
+        font-size: 10px;
+        font-weight: 700;
+        opacity: .8;
+    }
+    
+    .store.fanza {
+        background: var(--fanza);
+        color: #fff;
+    }
+    
+    .store.dl {
+        background: var(--dlsite);
+        color: #251d00;
+    }
+
+    @media (hover: hover) {
+      .store:hover,
+      .store-button:hover,
+      .support-link:hover,
+      .mini-store:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 7px 20px rgba(30, 25, 20, .08);
+      }
+    }
+
+    .store-mark {
+      min-width: 54px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+
+    .store-button--fanza .store-mark {
+      background: var(--fanza);
+      color: #fff;
+    }
+
+    .store-button--dlsite .store-mark {
+      background: var(--dlsite);
+      color: #221c00;
+    }
+
+    .store-copy {
+      min-width: 0;
+    }
+
+    .store-copy strong,
+    .store-copy small {
+      display: block;
+    }
+
+    .store-copy strong {
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .store-copy small {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.3;
+    }
+
+    .arrow {
+      color: #aaa49c;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .section {
+      margin-top: 36px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 2px 12px;
+    }
+
+    .section-heading__sub {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--accent);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .14em;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.3;
+      letter-spacing: -.02em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 10px;
+      text-align: right;
+    }
+
+    .work-list {
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+    }
+
+    .work {
+      display: grid;
+      grid-template-columns: 136px minmax(0, 1fr);
+      min-height: 146px;
+    }
+
+    .work + .work {
+      border-top: 1px solid var(--line);
+    }
+
+    .work__cover {
+      display: block;
+      min-height: 146px;
+      overflow: hidden;
+      background: #ece9e4;
+    }
+
+    .work__cover img {
+      width: 100%;
+      height: 100%;
+      min-height: 146px;
+      object-fit: cover;
+    }
+
+    .work__body {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 15px 13px;
+    }
+
+    .work__number {
+      display: block;
+      color: var(--accent);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .work__title {
+      margin: 4px 0 5px;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .work__description {
+      margin: 0 0 11px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    .mini-store-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .mini-store-grid.is-single {
+      grid-template-columns: 1fr;
+    }
+
+    .mini-store {
+      height: 37px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #fff;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 900;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .mini-store--fanza {
+      color: #d71920;
+      border-color: #efcfd1;
+      background: #fff9f9;
+    }
+
+    .mini-store--dlsite {
+      color: #665000;
+      border-color: #e9db8d;
+      background: #fffdf1;
+    }
+
+    .all-works {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: transparent;
+      color: #3d3934;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .support-card {
+      padding: 17px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+    }
+
+    .support-card__copy {
+      margin: 0 0 13px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .support-link {
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fff;
+      text-decoration: none;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .support-link--recommended {
+      grid-column: 1 / -1;
+      border-color: #e7b8be;
+      background: #fff7f8;
+    }
+
+    .support-link strong,
+    .support-link small {
+      display: block;
+    }
+
+    .support-link strong {
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .support-link small {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    .recommend-label {
+      display: inline-flex;
+      margin-left: 5px;
+      padding: 2px 5px;
+      border-radius: 999px;
+      background: #ffe4e8;
+      color: #bb3445;
+      font-size: 8px;
+      font-style: normal;
+      vertical-align: 1px;
+    }
+
+    .footer {
+        margin-top: 42px;
+        text-align: center;
+    }
+
+    .socials {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 18px;
+    }
+
+    .social-link {
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        border: 1px solid #dedbd6;
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 4px 14px rgba(45, 37, 28, 0.07);
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+            transform 0.15s ease,
+            box-shadow 0.15s ease,
+            border-color 0.15s ease;
+    }
+
+    .social-link img {
+        width: 25px;
+        height: 25px;
+        display: block;
+        object-fit: contain;
+    }
+
+    .social-link:hover {
+        transform: translateY(-2px);
+        border-color: #c9c4bd;
+        box-shadow: 0 7px 18px rgba(45, 37, 28, 0.11);
+    }
+
+    .social-link:active {
+        transform: translateY(0);
+    }
+
+    .social-link:focus-visible {
+        outline: 3px solid rgba(228, 75, 88, 0.25);
+        outline-offset: 3px;
+    }
+
+    .copyright {
+        margin: 0;
+        color: #aaa;
+        font-size: 10px;
+    }
+
+    [hidden] { display: none !important; }
+
+    @media (max-width: 420px) {
+      .page { padding-left: 12px; padding-right: 12px; }
+      .featured__head { padding: 18px 15px 14px; }
+      .purchase { padding: 11px; }
+      .store-grid { grid-template-columns: 1fr; }
+      .store-button { min-height: 58px; }
+      .work { grid-template-columns: 116px minmax(0, 1fr); }
+      .work__body { padding: 12px 10px; }
+      .work__description { margin-bottom: 9px; }
+    }
+
+    @media (max-width: 345px) {
+      .work { grid-template-columns: 104px minmax(0, 1fr); }
+      .mini-store-grid { grid-template-columns: 1fr; }
+      .section-heading p { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="profile">
+      <img class="profile__avatar" src="assets/images/avatar.webp" alt="M2坊">
+      <div>
+        <h1 class="profile__name">M2坊（えむにぼう）</h1>
+        <p class="profile__copy">同人誌やセリフ付きイラスト等を制作しています♡</p>
+      </div>
+    </header>
+
+    <section class="featured" aria-labelledby="latest-title">
+      <div class="featured__head">
+        <span class="tag">最新作・3作目</span>
+        <h2 class="featured__title" id="latest-title">最新作はこちらから</h2>
+        <p class="featured__lead">校内ドキドキ演技レッスン♡</p>
+      </div>
+
+      <a 
+        id="doujin-latest-image"
+        class="cover-link"
+        data-link-fallback="latestFanza latestDlsite"
+        aria-label="最新作の作品ページを見る"
+      >
+        <img src="assets/images/latest.webp" alt="最新作">
+      </a>
+
+      <div class="purchase">
+        <p class="purchase__label">▼使い慣れているページをお選びください♡▼</p>
+        <div class="actions">
+            <a id="doujin-latest-fanza" class="store fanza affiliate" data-link="latestFanza">FANZAで見る<small>作品詳細・サンプル</small></a>
+            <a id="doujin-latest-dlsite" class="store dl" data-link="latestDlsite">DLsiteで見る<small>作品詳細・サンプル</small></a>
+        </div>
+        
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="past-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-heading__sub">PAST WORKS</span>
+          <h2 id="past-title">過去作品</h2>
+        </div>
+        <p>作品ごとに配信サイトを選べます</p>
+      </div>
+
+      <div class="work-list">
+        <article class="work">
+          <a class="work__cover" data-link-fallback="work2Fanza work2Dlsite" aria-label="2作目の作品ページを見る">
+            <img src="assets/images/work2.webp" alt="2作目">
+          </a>
+          <div class="work__body">
+            <span class="work__number">2作目</span>
+            <h3 class="work__title">スクール水着のまま<br>プール授業を抜け出して…♡</h3>
+            <div class="mini-store-grid" data-link-group>
+              <a id="doujin-work2-fanza" class="mini-store mini-store--fanza affiliate" data-link="work2Fanza">FANZA</a>
+              <a id="doujin-work2-dlsite" class="mini-store mini-store--dlsite" data-link="work2Dlsite">DLsite</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work">
+          <a class="work__cover" data-link-fallback="work1Fanza work1Dlsite" aria-label="1作目の作品ページを見る">
+            <img src="assets/images/work1.webp" alt="1作目">
+          </a>
+          <div class="work__body">
+            <span class="work__number">1作目</span>
+            <h3 class="work__title">始めたばかりの同棲生活で<br>イチャイチャ…♡</h3>
+            <div class="mini-store-grid" data-link-group>
+              <a id="doujin-work1-fanza" class="mini-store mini-store--fanza affiliate" data-link="work1Fanza">FANZA</a>
+              <a id="doujin-work1-dlsite" class="mini-store mini-store--dlsite" data-link="work1Dlsite">DLsite</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <a class="all-works" data-link="allWorks">FANZAで作品一覧を見る <span aria-hidden="true">→</span></a>
+    </section>
+
+    <section class="section" aria-labelledby="support-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-heading__sub">SUPPORT</span>
+          <h2 id="support-title">限定えっち絵</h2>
+        </div>
+      </div>
+
+      <div class="support-card">
+        <p class="support-card__copy">限定コンテンツの内容は同じです。使いやすいサイトをお選びください♡</p>
+        <div class="support-grid">
+          <a id="support-fanbox" class="support-link support-link--recommended" data-link="fanbox">
+            <span><strong>FANBOX <em class="recommend-label">おすすめ</em></strong><small>限定えっち絵を見る♡</small></span>
+            <span class="arrow" aria-hidden="true">›</span>
+          </a>
+          <a id="support-fantia" class="support-link" data-link="fantia">
+            <span><strong>Fantia</strong><small>支援ページを見る</small></span>
+            <span class="arrow" aria-hidden="true">›</span>
+          </a>
+          <a id="support-cien" class="support-link" data-link="cien">
+            <span><strong>Ci-en</strong><small>支援ページを見る</small></span>
+            <span class="arrow" aria-hidden="true">›</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+        <nav class="socials" aria-label="SNS">
+            <a
+            id="social-x" 
+            class="social-link"
+            data-link="x"
+            aria-label="Xを開く"
+            title="X"
+            >
+            <img src="assets/images/social-x.svg" alt="">
+            </a>
+
+            <a
+            id="social-instagram" 
+            class="social-link"
+            data-link="instagram"
+            aria-label="Instagramを開く"
+            title="Instagram"
+            >
+            <img src="assets/images/social-instagram.svg" alt="">
+            </a>
+        </nav>
+
+        <p class="copyright">© M2坊</p>
+    </footer>
+  </main>
+
+  <script>
+    const LINKS = {
+      latestFanza: "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdc%2Fdoujin%2F-%2Fdetail%2F%3D%2Fcid%3Dd_725461%2F&af_id=m2bou-011&ch=toolbar&ch_id=link",
+      latestDlsite: "https://www.dlsite.com/maniax/work/=/product_id/RJ01552862.html",
+      work2Fanza: "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdc%2Fdoujin%2F-%2Fdetail%2F%3D%2Fcid%3Dd_629616%2F&af_id=m2bou-011&ch=toolbar&ch_id=link",
+      work2Dlsite: "https://www.dlsite.com/maniax/work/=/product_id/RJ01504709.html",
+      work1Fanza: "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdc%2Fdoujin%2F-%2Fdetail%2F%3D%2Fcid%3Dd_478124%2F&af_id=m2bou-011&ch=toolbar&ch_id=link",
+      work1Dlsite: "https://www.dlsite.com/maniax/work/=/product_id/RJ01503603.html",
+      allWorks: "https://al.fanza.co.jp/?lurl=https%3A%2F%2Fwww.dmm.co.jp%2Fdc%2Fdoujin%2F-%2Flist%2F%3D%2Farticle%3Dmaker%2Fid%3D221209%2F&af_id=m2bou-011&ch=toolbar&ch_id=text",
+      fanbox: "https://m2bou.fanbox.cc/tags/500%E3%80%9C660%E5%86%86%E4%BB%A5%E4%B8%8B",
+      fantia: "https://fantia.jp/fanclubs/528356/posts",
+      cien: "https://ci-en.dlsite.com/creator/33070/article",
+      x: "https://x.com/m2bou_r18",
+      pixiv: "https://www.pixiv.net/users/79564594",
+      instagram: "https://www.instagram.com/monitieeee/"
+    };
+
+    const setExternalLink = (element, url) => {
+      element.href = url;
+      element.target = "_blank";
+      element.rel = "noopener noreferrer";
+    };
+
+    document.querySelectorAll("[data-link]").forEach((element) => {
+      const url = LINKS[element.dataset.link];
+      if (url) {
+        setExternalLink(element, url);
+      } else {
+        element.hidden = true;
+      }
+    });
+
+    document.querySelectorAll('[data-link]').forEach(a => {
+      const url = LINKS[a.dataset.link];
+
+      if (url) {
+        a.href = url;
+        a.target = '_blank';
+
+        a.rel = a.classList.contains('affiliate')
+          ? 'noopener noreferrer sponsored'
+          : 'noopener noreferrer';
+      } else {
+        a.classList.add('unset');
+        a.setAttribute('aria-disabled', 'true');
+      }
+    });
+
+    document.querySelectorAll("[data-link-fallback]").forEach((element) => {
+      const keys = element.dataset.linkFallback.split(/\s+/);
+      const url = keys.map((key) => LINKS[key]).find(Boolean);
+      if (url) {
+        setExternalLink(element, url);
+      } else {
+        element.removeAttribute("href");
+        element.setAttribute("aria-disabled", "true");
+      }
+    });
+
+    document.querySelectorAll("[data-link-group]").forEach((group) => {
+      const visibleLinks = [...group.querySelectorAll("a")].filter((link) => !link.hidden);
+      group.classList.toggle("is-single", visibleLinks.length === 1);
+      if (visibleLinks.length === 0) group.hidden = true;
+    });
+  </script>
+</body>
+</html>
