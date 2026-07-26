@@ -6,7 +6,340 @@
 <meta name="description" content="M2坊の同人誌、支援サイト等へのリンクです。">
 <style>
 :root{--bg:#f6f5f2;--card:#fff;--text:#181818;--sub:#67635e;--line:#dedbd6;--accent:#e44b58;--fanza:#ee2d2d;--dl:#f2b400;--max:520px}
-*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;line-height:1.55;background:linear-gradient(#fff 0,#f6f5f2 340px)}a{-webkit-tap-highlight-color:transparent}.page{width:min(100%,var(--max));margin:auto;padding:18px 15px 60px}.profile{display:flex;align-items:center;gap:12px;margin:2px 3px 18px}.profile img{width:62px;height:62px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 14px #0002}.profile h1{font-size:19px;margin:0}.profile p{font-size:12px;color:var(--sub);margin:3px 0 0}.hero,.work,.support{background:var(--card);border:1px solid var(--line);border-radius:19px;overflow:hidden;box-shadow:0 8px 28px #2d251c10}.hero-label{padding:15px 16px 10px}.eyebrow{display:inline-block;background:#fff0f2;color:#bd3340;border-radius:999px;padding:4px 9px;font-weight:800;font-size:11px}.hero h2{font-size:25px;line-height:1.25;margin:8px 0 4px;letter-spacing:-.03em}.hero-label p{margin:0;color:var(--sub);font-size:13px}.hero-image{display:block;aspect-ratio:1.45/1;overflow:hidden}.hero-image img{width:100%;height:100%;object-fit:cover}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px}.store{min-height:58px;border-radius:13px;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:15px;position:relative}.store small{font-size:10px;font-weight:700;opacity:.8}.store.fanza{background:var(--fanza);color:#fff}.store.dl{background:var(--dl);color:#251d00}.note{text-align:center;color:var(--sub);font-size:10px;margin:-3px 12px 13px}.section{margin-top:28px}.section-head{margin:0 3px 10px}.section-head h2{font-size:18px;margin:0}.section-head p{font-size:11px;color:var(--sub);margin:2px 0 0}.works{display:grid;gap:11px}.work{display:grid;grid-template-columns:118px 1fr}.work img{width:100%;height:100%;min-height:126px;object-fit:cover}.work-body{padding:13px 12px}.work-body h3{font-size:15px;margin:0 0 8px}.mini-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.mini-actions a{height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:12px;font-weight:900;border:1px solid var(--line)}.mini-actions .fanza{color:#d51f1f;background:#fff5f5;border-color:#f2caca}.mini-actions .dl{color:#735800;background:#fff9df;border-color:#edda89}.all-works{display:flex;align-items:center;justify-content:center;height:50px;margin-top:10px;border:1px solid var(--line);border-radius:13px;background:#fff;color:var(--text);font-weight:800;font-size:13px;text-decoration:none}.support{padding:15px}.support-copy h2{font-size:18px;margin:0}.support-copy p{font-size:12px;color:var(--sub);margin:3px 0 13px}.support-grid{display:grid;gap:8px}.support-grid a{display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:10px 13px;border-radius:12px;border:1px solid var(--line);text-decoration:none;background:#fff;font-weight:800;font-size:13px}.support-grid span{display:block;font-size:10px;color:var(--sub);font-weight:500}.recommended{border-color:#e8afb5!important;background:#fff7f8!important}.recommended b::after{content:" おすすめ";font-size:9px;color:#c93645;background:#ffe4e7;border-radius:999px;padding:2px 5px;margin-left:5px}.socials{display:flex;justify-content:center;gap:18px;margin:30px 0 8px}.socials a{font-size:12px;color:#777;text-decoration:none;border-bottom:1px solid #bbb}.footer{text-align:center;color:#aaa;font-size:10px;margin-top:18px}.unset{opacity:.5;pointer-events:none}@media(max-width:370px){.work{grid-template-columns:105px 1fr}.store{font-size:14px}.page{padding-left:11px;padding-right:11px}}
+  *{ box-sizing:border-box }
+  
+  html {
+    background:var(--bg)
+  }
+  
+  body {
+    margin:0;
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.55;
+    background:linear-gradient(#fff 0,#f6f5f2 340px)
+  }
+  
+  a { -webkit-tap-highlight-color:transparent }
+  
+  .page {
+    width:min(100%,var(--max));
+    margin:auto;
+    padding:18px 15px 60px
+  }
+  
+  .profile {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:2px 3px 18px
+  }
+
+  .profile img {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 14px #0002;
+  }
+  
+  .profile h1 {
+      font-size: 19px;
+      margin: 0;
+  }
+  
+  .profile p {
+      font-size: 12px;
+      color: var(--sub);
+      margin: 3px 0 0;
+  }
+  
+  .hero,
+  .work,
+  .support {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px #2d251c10;
+  }
+  
+  .hero-label {
+      padding: 15px 16px 10px;
+  }
+  
+  .eyebrow {
+      display: inline-block;
+      background: #fff0f2;
+      color: #bd3340;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-weight: 800;
+      font-size: 11px;
+  }
+  
+  .hero h2 {
+      font-size: 25px;
+      line-height: 1.25;
+      margin: 8px 0 4px;
+      letter-spacing: -.03em;
+  }
+  
+  .hero-label p {
+      margin: 0;
+      color: var(--sub);
+      font-size: 13px;
+  }
+  
+  .hero-image {
+      display: block;
+      aspect-ratio: 1.45 / 1;
+      overflow: hidden;
+  }
+  
+  .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+  
+  .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      padding: 12px;
+  }
+  
+  .store {
+      min-height: 58px;
+      border-radius: 13px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 15px;
+      position: relative;
+  }
+  
+  .store small {
+      font-size: 10px;
+      font-weight: 700;
+      opacity: .8;
+  }
+  
+  .store.fanza {
+      background: var(--fanza);
+      color: #fff;
+  }
+  
+  .store.dl {
+      background: var(--dl);
+      color: #251d00;
+  }
+  
+  .note {
+      text-align: center;
+      color: var(--sub);
+      font-size: 10px;
+      margin: -3px 12px 13px;
+  }
+  
+  .section {
+      margin-top: 28px;
+  }
+  
+  .section-head {
+      margin: 0 3px 10px;
+  }
+  
+  .section-head h2 {
+      font-size: 18px;
+      margin: 0;
+  }
+  
+  .section-head p {
+      font-size: 11px;
+      color: var(--sub);
+      margin: 2px 0 0;
+  }
+  
+  .works {
+      display: grid;
+      gap: 11px;
+  }
+  
+  .work {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+  }
+  
+  .work img {
+      width: 100%;
+      height: 100%;
+      min-height: 126px;
+      object-fit: cover;
+  }
+  
+  .work-body {
+      padding: 13px 12px;
+  }
+  
+  .work-body h3 {
+      font-size: 15px;
+      margin: 0 0 8px;
+  }
+
+  .work-body p {
+      margin: 8px 0;
+      color: var(--sub);
+      font-size: 10px;
+  }
+  
+  .mini-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+  }
+  
+  .mini-actions a {
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 900;
+      border: 1px solid var(--line);
+  }
+  
+  .mini-actions .fanza {
+      color: #d51f1f;
+      background: #fff5f5;
+      border-color: #f2caca;
+  }
+  
+  .mini-actions .dl {
+      color: #735800;
+      background: #fff9df;
+      border-color: #edda89;
+  }
+  
+  .all-works {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: #fff;
+      color: var(--text);
+      font-weight: 800;
+      font-size: 13px;
+      text-decoration: none;
+  }
+  
+  .support {
+      padding: 15px;
+  }
+  
+  .support-copy h2 {
+      font-size: 18px;
+      margin: 0;
+  }
+  
+  .support-copy p {
+      font-size: 12px;
+      color: var(--sub);
+      margin: 3px 0 13px;
+  }
+  
+  .support-grid {
+      display: grid;
+      gap: 8px;
+  }
+  
+  .support-grid a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 52px;
+      padding: 10px 13px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      background: #fff;
+      font-weight: 800;
+      font-size: 13px;
+  }
+  
+  .support-grid span {
+      display: block;
+      font-size: 10px;
+      color: var(--sub);
+      font-weight: 500;
+  }
+  
+  .recommended {
+      border-color: #e8afb5 !important;
+      background: #fff7f8 !important;
+  }
+  
+  .recommended b::after {
+      content: " おすすめ";
+      font-size: 9px;
+      color: #c93645;
+      background: #ffe4e7;
+      border-radius: 999px;
+      padding: 2px 5px;
+      margin-left: 5px;
+  }
+  
+  .socials {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin: 30px 0 8px;
+  }
+  
+  .socials a {
+      font-size: 12px;
+      color: #777;
+      text-decoration: none;
+      border-bottom: 1px solid #bbb;
+  }
+
+  .footer {
+      text-align: center;
+      color: #aaa;
+      font-size: 10px;
+      margin-top: 18px;
+  }
+  
+  .unset {
+    opacity: .5;
+    pointer-events: none;
+  }
+
+  @media (max-width: 370px) {
+    .work {
+        grid-template-columns: 105px 1fr;
+    }
+
+    .store {
+        font-size: 14px;
+    }
+
+    .page {
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+  }
+  
 </style>
 </head>
 <body><main class="page">
