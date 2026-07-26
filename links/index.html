@@ -2,15 +2,16 @@
 <html lang="ja">
 <head>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6MDHM4W6BH"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-6MDHM4W6BH');
-    </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6MDHM4W6BH"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6MDHM4W6BH');
+  </script>
 
+  <meta name="robots" content="noindex,follow">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f7f6f3">
@@ -605,15 +606,20 @@
         <p class="featured__lead">校内ドキドキ演技レッスン♡</p>
       </div>
 
-      <a class="cover-link" data-link-fallback="latestFanza latestDlsite" aria-label="最新作の作品ページを見る">
-        <img src="assets/images/latest.webp" alt="校内ドキドキ演技レッスン♡">
+      <a 
+        id="doujin-latest-image"
+        class="cover-link"
+        data-link-fallback="latestFanza latestDlsite"
+        aria-label="最新作の作品ページを見る"
+      >
+        <img src="assets/images/latest.webp" alt="最新作">
       </a>
 
       <div class="purchase">
         <p class="purchase__label">▼使い慣れているページをお選びください♡▼</p>
         <div class="actions">
-            <a class="store fanza" data-link="latestFanza">FANZAで見る<small>作品詳細・サンプル</small></a>
-            <a class="store dl" data-link="latestDlsite">DLsiteで見る<small>作品詳細・サンプル</small></a>
+            <a id="doujin-latest-fanza" class="store fanza affiliate" data-link="latestFanza">FANZAで見る<small>作品詳細・サンプル</small></a>
+            <a id="doujin-latest-dlsite" class="store dl" data-link="latestDlsite">DLsiteで見る<small>作品詳細・サンプル</small></a>
         </div>
         
       </div>
@@ -637,8 +643,8 @@
             <span class="work__number">2作目</span>
             <h3 class="work__title">スクール水着のまま<br>プール授業を抜け出して…♡</h3>
             <div class="mini-store-grid" data-link-group>
-              <a class="mini-store mini-store--fanza" data-link="work2Fanza">FANZA</a>
-              <a class="mini-store mini-store--dlsite" data-link="work2Dlsite">DLsite</a>
+              <a id="doujin-work2-fanza" class="mini-store mini-store--fanza affiliate" data-link="work2Fanza">FANZA</a>
+              <a id="doujin-work2-dlsite" class="mini-store mini-store--dlsite" data-link="work2Dlsite">DLsite</a>
             </div>
           </div>
         </article>
@@ -651,8 +657,8 @@
             <span class="work__number">1作目</span>
             <h3 class="work__title">始めたばかりの同棲生活で<br>イチャイチャ…♡</h3>
             <div class="mini-store-grid" data-link-group>
-              <a class="mini-store mini-store--fanza" data-link="work1Fanza">FANZA</a>
-              <a class="mini-store mini-store--dlsite" data-link="work1Dlsite">DLsite</a>
+              <a id="doujin-work1-fanza" class="mini-store mini-store--fanza affiliate" data-link="work1Fanza">FANZA</a>
+              <a id="doujin-work1-dlsite" class="mini-store mini-store--dlsite" data-link="work1Dlsite">DLsite</a>
             </div>
           </div>
         </article>
@@ -672,15 +678,15 @@
       <div class="support-card">
         <p class="support-card__copy">限定コンテンツの内容は同じです。使いやすいサイトをお選びください♡</p>
         <div class="support-grid">
-          <a class="support-link support-link--recommended" data-link="fanbox">
+          <a id="support-fanbox" class="support-link support-link--recommended" data-link="fanbox">
             <span><strong>FANBOX <em class="recommend-label">おすすめ</em></strong><small>限定えっち絵を見る♡</small></span>
             <span class="arrow" aria-hidden="true">›</span>
           </a>
-          <a class="support-link" data-link="fantia">
+          <a id="support-fantia" class="support-link" data-link="fantia">
             <span><strong>Fantia</strong><small>支援ページを見る</small></span>
             <span class="arrow" aria-hidden="true">›</span>
           </a>
-          <a class="support-link" data-link="cien">
+          <a id="support-cien" class="support-link" data-link="cien">
             <span><strong>Ci-en</strong><small>支援ページを見る</small></span>
             <span class="arrow" aria-hidden="true">›</span>
           </a>
@@ -691,6 +697,7 @@
     <footer class="footer">
         <nav class="socials" aria-label="SNS">
             <a
+            id="social-x" 
             class="social-link"
             data-link="x"
             aria-label="Xを開く"
@@ -700,6 +707,7 @@
             </a>
 
             <a
+            id="social-instagram" 
             class="social-link"
             data-link="instagram"
             aria-label="Instagramを開く"
@@ -742,6 +750,22 @@
         setExternalLink(element, url);
       } else {
         element.hidden = true;
+      }
+    });
+
+    document.querySelectorAll('[data-link]').forEach(a => {
+      const url = LINKS[a.dataset.link];
+
+      if (url) {
+        a.href = url;
+        a.target = '_blank';
+
+        a.rel = a.classList.contains('affiliate')
+          ? 'noopener noreferrer sponsored'
+          : 'noopener noreferrer';
+      } else {
+        a.classList.add('unset');
+        a.setAttribute('aria-disabled', 'true');
       }
     });
 
