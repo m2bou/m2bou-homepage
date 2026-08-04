@@ -476,42 +476,65 @@
     }
 
     .support-card {
-      padding: 17px;
+      overflow: hidden;
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
     }
 
-    .support-card__copy {
-      margin: 0 0 13px;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
     .support-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
+      display: block;
     }
 
     .support-link {
-      min-height: 60px;
+      min-height: 82px;
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr);
+      align-items: stretch;
+      padding: 0;
+      background: #fff;
+      text-decoration: none;
+      transition: background-color .15s ease;
+    }
+
+    .support-link + .support-link {
+      border-top: 1px solid var(--line);
+    }
+
+    @media (hover: hover) {
+      .support-link:hover {
+        transform: none;
+        box-shadow: none;
+        background: #fcfbf9;
+      }
+    }
+
+    .support-link__icon {
+      display: grid;
+      place-items: center;
+      min-height: 82px;
+      background: #f7f5f1;
+      border-right: 1px solid var(--line);
+    }
+
+    .support-link__icon img {
+      /* width: 48px;
+      height: 48px; */
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .support-link__body {
+      min-width: 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      padding: 11px 12px;
-      border: 1px solid var(--line);
-      border-radius: 11px;
-      background: #fff;
-      text-decoration: none;
-      transition: transform .15s ease, box-shadow .15s ease;
+      gap: 12px;
+      padding: 13px 14px;
     }
 
-    .support-link--recommended {
-      grid-column: 1 / -1;
-      border-color: #e7b8be;
-      background: #fff7f8;
+    .support-link__copy {
+      min-width: 0;
     }
 
     .support-link strong,
@@ -520,14 +543,23 @@
     }
 
     .support-link strong {
-      font-size: 12px;
-      line-height: 1.35;
+      font-size: 13px;
+      line-height: 1.4;
     }
 
     .support-link small {
-      margin-top: 2px;
+      margin-top: 4px;
       color: var(--muted);
       font-size: 9px;
+      line-height: 1.45;
+    }
+
+    .support-link--recommended {
+      background: #fffafb;
+    }
+
+    .support-link--recommended .support-link__icon {
+      background: #fff4f6;
     }
 
     .recommend-label {
@@ -712,19 +744,44 @@
       </div>
 
       <div class="support-card">
-        <!-- <p class="support-card__copy">限定コンテンツの内容は共通です。使いやすいサイトをお選びください</p> -->
         <div class="support-grid">
           <a id="support-fanbox" class="support-link support-link--recommended" data-link="fanbox">
-            <span><strong>FANBOX <em class="recommend-label">おすすめ</em></strong><small>限定コンテンツを見る♡</small></span>
-            <span class="arrow" aria-hidden="true">›</span>
+            <span class="support-link__icon" aria-hidden="true">
+              <img src="assets/images/fanbox.webp" alt="">
+            </span>
+            <span class="support-link__body">
+              <span class="support-link__copy">
+                <strong>FANBOX <em class="recommend-label">おすすめ</em></strong>
+                <small>限定コンテンツを見る♡</small>
+              </span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </span>
           </a>
+
           <a id="support-fantia" class="support-link affiliate" data-link="fantia">
-            <span><strong>Fantia</strong><small>支援ページを見る</small></span>
-            <span class="arrow" aria-hidden="true">›</span>
+            <span class="support-link__icon" aria-hidden="true">
+              <img src="assets/images/fantia.webp" alt="">
+            </span>
+            <span class="support-link__body">
+              <span class="support-link__copy">
+                <strong>Fantia</strong>
+                <small>限定コンテンツを見る</small>
+              </span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </span>
           </a>
+
           <a id="support-cien" class="support-link" data-link="cien">
-            <span><strong>Ci-en</strong><small>支援ページを見る</small></span>
-            <span class="arrow" aria-hidden="true">›</span>
+            <span class="support-link__icon" aria-hidden="true">
+              <img src="assets/images/cien.webp" alt="">
+            </span>
+            <span class="support-link__body">
+              <span class="support-link__copy">
+                <strong>Ci-en</strong>
+                <small>限定コンテンツを見る</small>
+              </span>
+              <span class="arrow" aria-hidden="true">›</span>
+            </span>
           </a>
         </div>
       </div>
