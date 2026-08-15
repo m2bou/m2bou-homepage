@@ -888,6 +888,51 @@
       group.classList.toggle("is-single", visibleLinks.length === 1);
       if (visibleLinks.length === 0) group.hidden = true;
     });
+
+    // ========================================
+    // GA4 リンククリック計測
+    // ========================================
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest(
+        "a[data-link], a[data-link-fallback]"
+      );
+
+      if (!link || !link.href) return;
+      if (typeof gtag !== "function") return;
+
+      // 実際に使われたリンクキー
+      const fallbackKeys = (
+        link.dataset.linkFallback || ""
+      ).split(/\s+/).filter(Boolean);
+
+      const destinationKey =
+        link.dataset.link ||
+        fallbackKeys.find((key) => LINKS[key]) ||
+        "";
+
+      // HTML上の固有ID
+      const clickTarget =
+        link.id ||
+        destinationKey ||
+        "unknown";
+
+      // 大分類
+      let clickGroup = "other";
+
+      if (clickTarget.startsWith("doujin-")) {
+        clickGroup = "doujin";
+      } else if (clickTarget.startsWith("support-")) {
+        clickGroup = "support";
+      } else if (clickTarget.startsWith("social-")) {
+        clickGroup = "social";
+      }
+
+      gtag("event", "link_click", {
+        click_target: clickTarget,
+        click_group: clickGroup,
+        destination_key: destinationKey
+      });
+    });
   </script>
 </body>
 </html>
