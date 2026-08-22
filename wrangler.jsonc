@@ -1,13 +1,25 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
+
   "name": "m2bou-homepage",
+
+  "main": "./worker.js",
+
   "compatibility_date": "2026-07-10",
+
   "observability": {
     "enabled": true
   },
+
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/posts/*",
+      "/test"
+    ]
   },
+
   "compatibility_flags": [
     "nodejs_compat"
   ]
