@@ -42,10 +42,7 @@ export async function onRequestGet(context) {
     ).href;
 
   const fanboxImage1 =
-    new URL(
-      `${baseImagePath}/fanbox01.webp`,
-      url.origin
-    ).href;
+    ogpImageUrl;
 
   const fanboxImage2 =
     new URL(
