@@ -20,6 +20,13 @@
     ]
   },
 
+  "kv_namespaces": [
+    {
+      "binding": "POSTS",
+      "id": "d82b77b8ad1541da8831a2145dfdac91"
+    }
+  ],
+
   "compatibility_flags": [
     "nodejs_compat"
   ]
