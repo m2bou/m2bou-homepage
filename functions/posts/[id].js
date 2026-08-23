@@ -35,11 +35,11 @@ export async function onRequestGet(context) {
       url.origin
     ).href;
 
-  // const introMainImageUrl =
-  //   new URL(
-  //     `${baseImagePath}/main.webp`,
-  //     url.origin
-  //   ).href;
+  const introMainImageUrl =
+    new URL(
+      `${baseImagePath}/main.webp`,
+      url.origin
+    ).href;
 
   const fanboxImage1 =
     ogpImageUrl;
@@ -135,7 +135,7 @@ export async function onRequestGet(context) {
 
     ogpImageUrl,
 
-    // introMainImageUrl,
+    introMainImageUrl,
 
     fanboxCard1,
 
@@ -179,7 +179,7 @@ function renderPage({
   publishedAt,
   canonicalUrl,
   ogpImageUrl,
-  // introMainImageUrl,
+  introMainImageUrl,
   fanboxCard1,
   fanboxCard2,
   fantiaUrl,
