@@ -35,11 +35,11 @@ export async function onRequestGet(context) {
       url.origin
     ).href;
 
-  const introMainImageUrl =
-    new URL(
-      `${baseImagePath}/main.webp`,
-      url.origin
-    ).href;
+  // const introMainImageUrl =
+  //   new URL(
+  //     `${baseImagePath}/main.webp`,
+  //     url.origin
+  //   ).href;
 
   const fanboxImage1 =
     ogpImageUrl;
@@ -135,7 +135,7 @@ export async function onRequestGet(context) {
 
     ogpImageUrl,
 
-    introMainImageUrl,
+    // introMainImageUrl,
 
     fanboxCard1,
 
@@ -179,7 +179,7 @@ function renderPage({
   publishedAt,
   canonicalUrl,
   ogpImageUrl,
-  introMainImageUrl,
+  // introMainImageUrl,
   fanboxCard1,
   fanboxCard2,
   fantiaUrl,
@@ -1316,42 +1316,6 @@ function renderPage({
 
 
     <!-- =========================
-         INTRO
-    ========================== -->
-
-    <section class="section">
-
-
-      <span class="section-label">
-        INTRO
-      </span>
-
-
-      <h2 class="section-title">
-        導入パート
-      </h2>
-
-
-      <div class="intro-image-wrap">
-
-
-        <img
-          class="intro-main-image"
-          src="${escapeHtml(
-            introMainImageUrl
-          )}"
-          alt=""
-        >
-
-
-      </div>
-
-
-    </section>
-
-
-
-    <!-- =========================
          FANBOX
     ========================== -->
 
@@ -1438,6 +1402,42 @@ function renderPage({
 
         : ""
     }
+
+
+    <!-- =========================
+      INTRO
+    ========================== -->
+
+    <section class="section">
+
+
+      <span class="section-label">
+        INTRO
+      </span>
+
+
+      <h2 class="section-title">
+        導入パート
+      </h2>
+
+
+      <div class="intro-image-wrap">
+
+
+        <img
+          class="intro-main-image"
+          src="${escapeHtml(
+            introMainImageUrl
+          )}"
+          alt=""
+        >
+
+
+      </div>
+
+
+    </section>
+
 
 
 
@@ -1533,8 +1533,8 @@ function renderFanboxBlock({
   }
 
 
-  const safeText =
-    escapeHtml(text || "");
+  // const safeText =
+  //   escapeHtml(text || "");
 
   const safeUrl =
     escapeHtml(url);
@@ -1560,7 +1560,7 @@ function renderFanboxBlock({
 
 
       ${
-        safeText
+        false
 
           ? `
             <p class="continue-text">
