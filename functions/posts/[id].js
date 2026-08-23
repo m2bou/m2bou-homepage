@@ -455,6 +455,15 @@ function renderPage({
       "${GA_ID}"
     );
 
+    
+    gtag(
+      "event",
+      "post_view",
+      {
+        post_id: "${safeId}"
+      }
+    );
+
   </script>
 
 
