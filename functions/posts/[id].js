@@ -1298,7 +1298,7 @@ function renderPage({
 
 
         ${
-          safeDescription
+          false
             ? `
               <p class="description">
                 ${safeDescription}
