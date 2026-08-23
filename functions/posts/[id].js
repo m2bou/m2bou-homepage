@@ -1408,36 +1408,43 @@ function renderPage({
       INTRO
     ========================== -->
 
-    <section class="section">
+    ${
+      false
+
+        ? `
+          <section class="section">
 
 
-      <span class="section-label">
-        INTRO
-      </span>
+            <span class="section-label">
+              INTRO
+            </span>
 
 
-      <h2 class="section-title">
-        導入パート
-      </h2>
+            <h2 class="section-title">
+              導入パート
+            </h2>
 
 
-      <div class="intro-image-wrap">
+            <div class="intro-image-wrap">
 
 
-        <img
-          class="intro-main-image"
-          src="${escapeHtml(
-            introMainImageUrl
-          )}"
-          alt=""
-        >
+              <img
+                class="intro-main-image"
+                src="${escapeHtml(
+                  introMainImageUrl
+                )}"
+                alt=""
+              >
 
 
-      </div>
+            </div>
 
 
-    </section>
+          </section>
+        `
 
+        : ""
+    }
 
 
 
