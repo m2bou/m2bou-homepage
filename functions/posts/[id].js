@@ -1328,12 +1328,12 @@ function renderPage({
 
 
             <span class="section-label">
-              CONTINUE
+              FANBOX
             </span>
 
 
             <h2 class="section-title">
-              続きはこちら
+              続きを見る
             </h2>
 
 
@@ -1615,7 +1615,11 @@ function renderFanboxBlock({
 
 
           <span class="fanbox-card__service">
-            FANBOX
+            ${
+              slot === "1"
+                ? "まずはこちら！"
+                : "もっと見たい方はこちら！"
+            }
           </span>
 
 
