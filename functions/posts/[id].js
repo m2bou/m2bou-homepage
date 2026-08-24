@@ -1149,6 +1149,45 @@ function renderPage({
     }
 
 
+    /* =========================
+       POSTS INDEX LINK
+    ========================== */
+
+
+    .posts-index-link {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      margin-top:
+        16px;
+
+      padding:
+        12px 14px;
+
+      border-top:
+        1px solid var(--line);
+
+      color:
+        var(--muted);
+
+      font-size:
+        11px;
+
+      font-weight:
+        700;
+
+      text-decoration:
+        none;
+
+    }
+
 
     /* =========================
        FOOTER
@@ -1453,7 +1492,13 @@ function renderPage({
         : ""
     }
 
-
+    <a
+      class="posts-index-link"
+      href="/posts"
+    >
+      投稿一覧を見る
+      <span aria-hidden="true">›</span>
+    </a>
 
     <footer class="footer">
 
