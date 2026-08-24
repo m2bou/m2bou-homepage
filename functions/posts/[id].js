@@ -602,6 +602,11 @@ function renderPage({
 
     }
 
+    .brand a {
+      color: inherit;
+      text-decoration: none;
+    }
+
 
 
     /* =========================
@@ -1266,7 +1271,9 @@ function renderPage({
 
 
     <div class="brand">
-      M2坊
+      <a href="/">
+        M2坊
+      </a>
     </div>
 
 

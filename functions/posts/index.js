@@ -449,6 +449,11 @@ function renderPage({
 
     }
 
+    .brand a {
+        color: inherit;
+        text-decoration: none;
+    }
+
 
     .page-label {
 
@@ -633,16 +638,31 @@ function renderPage({
     }
 
 
-    .post-id {
+    .post-description {
 
-      margin-top:
-        5px;
+        display:
+            -webkit-box;
 
-      color:
-        #aaa39b;
+        overflow:
+            hidden;
 
-      font-size:
-        8px;
+        margin-top:
+            5px;
+
+        color:
+            var(--muted);
+
+        font-size:
+            9px;
+
+        line-height:
+            1.5;
+
+        -webkit-line-clamp:
+            2;
+
+        -webkit-box-orient:
+            vertical;
 
     }
 
@@ -782,7 +802,9 @@ function renderPage({
 
 
     <div class="brand">
-      M2坊
+        <a href="/">
+            M2坊
+        </a>
     </div>
 
 
@@ -834,6 +856,9 @@ function renderPostCard(post) {
   const safeDate =
     escapeHtml(post.publishedAt);
 
+  const safeDescription =
+    escapeHtml(post.description);
+
 
   const imageUrl =
     `/assets/images/posts/${encodeURIComponent(
@@ -882,9 +907,17 @@ function renderPostCard(post) {
         </div>
 
 
-        <div class="post-id">
-          ID ${safeId}
-        </div>
+        ${
+        safeDescription
+
+            ? `
+            <div class="post-description">
+                ${safeDescription}
+            </div>
+            `
+
+            : ""
+        }
 
       </div>
 
