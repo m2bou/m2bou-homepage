@@ -730,6 +730,12 @@ function renderPage({
 
     }
 
+    
+    .footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
 
     @media (hover: hover) {
 
