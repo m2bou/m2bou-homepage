@@ -1166,7 +1166,7 @@ function renderPage({
         space-between;
 
       margin-top:
-        16px;
+        24px;
 
       padding:
         12px 14px;
@@ -1310,9 +1310,7 @@ function renderPage({
 
 
     <div class="brand">
-      <a href="/">
-        M2坊
-      </a>
+      M2坊
     </div>
 
 
@@ -1501,9 +1499,9 @@ function renderPage({
     </a>
 
     <footer class="footer">
-
-      © M2坊
-
+      <a href="/">
+        © M2坊
+      </a>
     </footer>
 
 

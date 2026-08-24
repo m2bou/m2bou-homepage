@@ -802,9 +802,7 @@ function renderPage({
 
 
     <div class="brand">
-        <a href="/">
-            M2坊
-        </a>
+      M2坊
     </div>
 
 
@@ -826,7 +824,9 @@ function renderPage({
 
 
     <footer class="footer">
-      © M2坊
+      <a href="/">
+        © M2坊
+      </a>
     </footer>
 
 
