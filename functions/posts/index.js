@@ -171,12 +171,19 @@ export async function onRequestGet(context) {
       url.origin
     ).href;
 
+  const linksMeta =
+    await getPageMeta(
+      env,
+      request,
+      "/links/"
+    );
 
   const html =
     renderPage({
       posts,
       canonicalUrl,
-      ogpImageUrl
+      ogpImageUrl,
+      linksMeta
     });
 
 
@@ -210,7 +217,8 @@ export async function onRequestGet(context) {
 function renderPage({
   posts,
   canonicalUrl,
-  ogpImageUrl
+  ogpImageUrl,
+  linksMeta
 }) {
 
   const postListHtml =
@@ -1066,7 +1074,9 @@ function renderPage({
         <div class="doujin-card__image">
 
           <img
-            src="/assets/images/ogp-links.webp"
+            src="${escapeHtml(
+              linksMeta.image
+            )}"
             alt=""
             loading="lazy"
           >
@@ -1075,16 +1085,18 @@ function renderPage({
 
         <div class="doujin-card__body">
 
-          <div class="doujin-card__site">
-            m2bou.com/links
-          </div>
+          // <div class="doujin-card__site">
+          //   m2bou.com/links
+          // </div>
 
           <div class="doujin-card__title">
-            同人誌
+            同人誌一覧
           </div>
 
           <div class="doujin-card__description">
-            同人誌の一覧を見る
+            ${escapeHtml(
+              linksMeta.title
+            )}
           </div>
 
         </div>
@@ -1249,6 +1261,219 @@ function escapeHtml(
     .replaceAll(
       "'",
       "&#039;"
+    );
+
+}
+
+
+
+/* =========================================================
+   PAGE META
+========================================================= */
+
+async function getPageMeta(
+  env,
+  request,
+  pathname
+) {
+
+  const url =
+    new URL(
+      pathname,
+      request.url
+    );
+
+
+  try {
+
+    const response =
+      await env.ASSETS.fetch(
+        new Request(url)
+      );
+
+
+    if (!response.ok) {
+
+      return {
+        title: "同人誌",
+        description: "",
+        image:
+          "/assets/images/ogp-links.webp"
+      };
+
+    }
+
+
+    const html =
+      await response.text();
+
+
+    const title =
+      getHtmlTitle(html);
+
+
+    const description =
+      getMetaContent(
+        html,
+        "name",
+        "description"
+      );
+
+
+    const image =
+      getMetaContent(
+        html,
+        "property",
+        "og:image"
+      );
+
+
+    return {
+
+      title:
+        title ||
+        "同人誌",
+
+      description:
+        description ||
+        "",
+
+      image:
+        image ||
+        "/assets/images/ogp-links.webp"
+
+    };
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Failed to load /links meta:",
+      error
+    );
+
+
+    return {
+
+      title:
+        "同人誌",
+
+      description:
+        "",
+
+      image:
+        "/assets/images/ogp-links.webp"
+
+    };
+
+  }
+
+}
+
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+function getHtmlTitle(
+  html
+) {
+
+  const match =
+    html.match(
+      /<title[^>]*>([\s\S]*?)<\/title>/i
+    );
+
+
+  return match
+    ? decodeHtml(
+        match[1].trim()
+      )
+    : "";
+
+}
+
+
+
+/* =========================================================
+   META CONTENT
+========================================================= */
+
+function getMetaContent(
+  html,
+  attribute,
+  value
+) {
+
+  const escapedValue =
+    value.replace(
+      /[.*+?^${}()|[\]\\]/g,
+      "\\$&"
+    );
+
+
+  const regex1 =
+    new RegExp(
+      `<meta[^>]*${attribute}=["']${escapedValue}["'][^>]*content=["']([^"']*)["'][^>]*>`,
+      "i"
+    );
+
+
+  const regex2 =
+    new RegExp(
+      `<meta[^>]*content=["']([^"']*)["'][^>]*${attribute}=["']${escapedValue}["'][^>]*>`,
+      "i"
+    );
+
+
+  const match =
+    html.match(regex1) ||
+    html.match(regex2);
+
+
+  return match
+    ? decodeHtml(match[1])
+    : "";
+
+}
+
+
+
+/* =========================================================
+   HTML DECODE
+========================================================= */
+
+function decodeHtml(
+  value = ""
+) {
+
+  return String(value)
+
+    .replaceAll(
+      "&amp;",
+      "&"
+    )
+
+    .replaceAll(
+      "&quot;",
+      '"'
+    )
+
+    .replaceAll(
+      "&#039;",
+      "'"
+    )
+
+    .replaceAll(
+      "&lt;",
+      "<"
+    )
+
+    .replaceAll(
+      "&gt;",
+      ">"
     );
 
 }
