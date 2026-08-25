@@ -1086,7 +1086,7 @@ function renderPage({
         <div class="doujin-card__body">
 
           <div class="doujin-card__title">
-            同人誌一覧
+            同人誌一覧♡
           </div>
 
           <div class="doujin-card__description">
