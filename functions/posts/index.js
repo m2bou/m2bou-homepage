@@ -1085,10 +1085,6 @@ function renderPage({
 
         <div class="doujin-card__body">
 
-          // <div class="doujin-card__site">
-          //   m2bou.com/links
-          // </div>
-
           <div class="doujin-card__title">
             同人誌一覧
           </div>
