@@ -1091,7 +1091,7 @@ function renderPage({
 
           <div class="doujin-card__description">
             ${escapeHtml(
-              linksMeta.title
+              linksMeta.description
             )}
           </div>
 
