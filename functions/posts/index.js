@@ -711,6 +711,225 @@ function renderPage({
 
 
     /* =========================
+      DOUJIN
+    ========================== */
+
+    .doujin-section {
+
+      margin-top:
+        44px;
+
+    }
+
+
+    .doujin-title {
+
+      margin:
+        0 0 14px;
+
+      font-size:
+        22px;
+
+      line-height:
+        1.4;
+
+    }
+
+
+    .doujin-card {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        136px
+        minmax(0, 1fr)
+        28px;
+
+      align-items:
+        center;
+
+      min-height:
+        112px;
+
+      overflow:
+        hidden;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--line);
+
+      border-radius:
+        16px;
+
+      color:
+        inherit;
+
+      text-decoration:
+        none;
+
+      transition:
+        transform .15s ease,
+        border-color .15s ease,
+        box-shadow .15s ease;
+
+    }
+
+
+    .doujin-card__image {
+
+      width:
+        136px;
+
+      height:
+        112px;
+
+      overflow:
+        hidden;
+
+      background:
+        #eeeae4;
+
+      border-right:
+        1px solid var(--line);
+
+    }
+
+
+    .doujin-card__image img {
+
+      width:
+        100%;
+
+      height:
+        100%;
+
+      object-fit:
+        cover;
+
+    }
+
+
+    .doujin-card__body {
+
+      min-width:
+        0;
+
+      padding:
+        14px;
+
+    }
+
+
+    .doujin-card__site {
+
+      margin-bottom:
+        4px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        9px;
+
+    }
+
+
+    .doujin-card__title {
+
+      margin-bottom:
+        4px;
+
+      font-size:
+        14px;
+
+      font-weight:
+        800;
+
+      line-height:
+        1.5;
+
+    }
+
+
+    .doujin-card__description {
+
+      color:
+        var(--muted);
+
+      font-size:
+        9px;
+
+      line-height:
+        1.5;
+
+    }
+
+
+    .doujin-card__arrow {
+
+      padding-right:
+        12px;
+
+      color:
+        #aaa39b;
+
+      font-size:
+        20px;
+
+      text-align:
+        center;
+
+    }
+
+
+    @media (hover: hover) {
+
+      .doujin-card:hover {
+
+        transform:
+          translateY(-1px);
+
+        border-color:
+          #d9d3cc;
+
+        box-shadow:
+          0 7px 22px
+          rgba(40, 34, 28, .07);
+
+      }
+
+    }
+
+
+    @media (max-width: 390px) {
+
+      .doujin-card {
+
+        grid-template-columns:
+          108px
+          minmax(0, 1fr)
+          24px;
+
+      }
+
+
+      .doujin-card__image {
+
+        width:
+          108px;
+
+        height:
+          96px;
+
+      }
+
+    }
+
+
+    /* =========================
        FOOTER
     ========================== */
 
@@ -827,6 +1046,59 @@ function renderPage({
       ${postListHtml}
 
     </div>
+
+
+    <section class="doujin-section">
+
+      <div class="page-label">
+        DOUJIN
+      </div>
+
+      <h2 class="doujin-title">
+        同人誌
+      </h2>
+
+      <a
+        class="doujin-card"
+        href="/links/"
+      >
+
+        <div class="doujin-card__image">
+
+          <img
+            src="/assets/images/ogp-links.webp"
+            alt=""
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="doujin-card__body">
+
+          <div class="doujin-card__site">
+            m2bou.com/links
+          </div>
+
+          <div class="doujin-card__title">
+            同人誌
+          </div>
+
+          <div class="doujin-card__description">
+            同人誌の一覧を見る
+          </div>
+
+        </div>
+
+        <div
+          class="doujin-card__arrow"
+          aria-hidden="true"
+        >
+          ›
+        </div>
+
+      </a>
+
+    </section>
 
 
     <footer class="footer">
