@@ -1499,7 +1499,7 @@ function renderPage({
       class="posts-index-link"
       href="/posts"
     >
-      投稿一覧を見る
+      投稿一覧に戻る
       <span aria-hidden="true">›</span>
     </a>
 
