@@ -919,7 +919,7 @@ function renderPage({
     #fanbox-card-1 {
     
         border:
-          2px solid #d99552;
+          3px solid #d99552;
 
         box-shadow:
           0 0 0 3px
@@ -1140,7 +1140,7 @@ function renderPage({
       }
 
       5% {
-        transform: translateY(-.4em);
+        transform: translateY(-.6em);
       }
 
     }
