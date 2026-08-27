@@ -1095,6 +1095,64 @@ function renderPage({
     }
 
 
+    .bounce-text span {
+      display: inline-block;
+      animation:
+        char-bounce 2.8s
+        ease-in-out
+        infinite;
+    }
+
+    .bounce-text span:nth-child(1) {
+      animation-delay: .15s;
+    }
+
+    .bounce-text span:nth-child(2) {
+      animation-delay: 1.05s;
+    }
+
+    .bounce-text span:nth-child(3) {
+      animation-delay: .42s;
+    }
+
+    .bounce-text span:nth-child(4) {
+      animation-delay: 1.52s;
+    }
+
+    .bounce-text span:nth-child(5) {
+      animation-delay: .78s;
+    }
+
+    .bounce-text span:nth-child(6) {
+      animation-delay: 1.28s;
+    }
+
+    .bounce-text span:nth-child(7) {
+      animation-delay: .03s;
+    }
+
+    @keyframes char-bounce {
+
+      0%,
+      12%,
+      100% {
+        transform: translateY(0);
+      }
+
+      5% {
+        transform: translateY(-.4em);
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .bounce-text span {
+        animation: none;
+      }
+
+    }
+
 
     /* =========================
        OTHER LINKS
@@ -1703,7 +1761,17 @@ function renderFanboxBlock({
           <span class="fanbox-card__service">
             ${
               slot === "1"
-                ? "まずはこちら！"
+                ? `
+                  <span class="bounce-text">
+                    <span>ま</span>
+                    <span>ず</span>
+                    <span>は</span>
+                    <span>こ</span>
+                    <span>ち</span>
+                    <span>ら</span>
+                    <span>！</span>
+                  </span>
+                `
                 : "もっと見たい方はこちら！"
             }
           </span>
