@@ -1322,6 +1322,19 @@ function renderPage({
         box-shadow:
           0 8px 24px
           rgba(40, 34, 28, .07);
+  
+      }
+
+      #fanbox-card-1:hover {
+
+          border-color:
+            #d99552;
+
+          box-shadow:
+            0 8px 24px
+            rgba(40, 34, 28, .07),
+            0 0 0 3px
+            rgba(217, 149, 82, .14);
 
       }
 
