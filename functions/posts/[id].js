@@ -408,7 +408,7 @@ function renderPage({
 
   <meta
     name="twitter:title"
-    content="${safeTitle}"
+    content="${safeTitle}｜M2坊"
   >
 
   <meta
