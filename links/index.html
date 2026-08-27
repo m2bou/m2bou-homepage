@@ -225,6 +225,144 @@
       gap: 9px;
       padding: 12px;
     }
+
+    /* =========================
+      STORE BUTTON BOUNCE
+    ========================== */
+
+    #doujin-latest-fanza,
+    #doujin-latest-dlsite {
+
+      transform-origin:
+        center bottom;
+
+      will-change:
+        transform;
+
+      animation:
+        store-bounce
+        3.4s
+        infinite;
+
+    }
+
+    #doujin-latest-fanza {
+      animation-delay: 0s;
+    }
+
+    #doujin-latest-dlsite {
+      animation-delay: 1.7s;
+    }
+
+    /* =========================
+      4回の減衰バウンス
+    ========================== */
+
+    @keyframes store-bounce {
+
+      /* =========================
+        1回目
+        ========================= */
+
+      0% {
+        transform: translateY(0);
+
+        /* 最下点では速度最大 → 上に行くほど減速 */
+        animation-timing-function:
+          cubic-bezier(.22, 1, .36, 1);
+      }
+
+      4% {
+        transform: translateY(-28px);
+
+        /* 頂点では速度0 → 落ちながら加速 */
+        animation-timing-function:
+          cubic-bezier(.64, 0, .78, 0);
+      }
+
+      8% {
+        transform: translateY(0);
+
+        animation-timing-function:
+          cubic-bezier(.22, 1, .36, 1);
+      }
+
+
+      /* =========================
+        2回目
+        ========================= */
+
+      11% {
+        transform: translateY(-9px);
+
+        animation-timing-function:
+          cubic-bezier(.64, 0, .78, 0);
+      }
+
+      14% {
+        transform: translateY(0);
+
+        animation-timing-function:
+          cubic-bezier(.22, 1, .36, 1);
+      }
+
+
+      /* =========================
+        3回目
+        ========================= */
+
+      16.5% {
+        transform: translateY(-5px);
+
+        animation-timing-function:
+          cubic-bezier(.64, 0, .78, 0);
+      }
+
+      19% {
+        transform: translateY(0);
+
+        animation-timing-function:
+          cubic-bezier(.22, 1, .36, 1);
+      }
+
+
+      /* =========================
+        4回目
+        ========================= */
+
+      21% {
+        transform: translateY(-2.5px);
+
+        animation-timing-function:
+          cubic-bezier(.64, 0, .78, 0);
+      }
+
+      23% {
+        transform: translateY(0);
+      }
+
+
+      /* 以降は静止 */
+      100% {
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* 動きを減らす設定 */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      #doujin-latest-fanza,
+      #doujin-latest-dlsite {
+
+        animation:
+          none;
+
+      }
+
+    }
     
     .store {
         min-height: 58px;
