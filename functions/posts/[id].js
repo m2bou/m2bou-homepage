@@ -41,8 +41,29 @@ export async function onRequestGet(context) {
       url.origin
     ).href;
 
+  const fanboxImage1Candidate =
+    new URL(
+      `${baseImagePath}/fanbox01.webp`,
+      url.origin
+    ).href;
+
+
+  const fanboxImage1Response =
+    await env.ASSETS.fetch(
+      new Request(
+        fanboxImage1Candidate,
+        {
+          method: "HEAD"
+        }
+      )
+    );
+
+
   const fanboxImage1 =
-    ogpImageUrl;
+    fanboxImage1Response.ok
+      ? fanboxImage1Candidate
+      : ogpImageUrl;
+
 
   const fanboxImage2 =
     new URL(
