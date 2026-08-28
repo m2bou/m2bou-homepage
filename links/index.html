@@ -730,7 +730,7 @@
     }
 
     .footer a {
-        color: inherit;
+        color: #8f8881;
         text-decoration: none;
     }
 
@@ -780,6 +780,44 @@
         outline: 3px solid rgba(228, 75, 88, 0.25);
         outline-offset: 3px;
     }
+
+    .footer-link {
+
+      color:
+        #8f8881;
+
+      font-size:
+        10px;
+
+      font-weight:
+        600;
+
+      text-decoration:
+        none;
+
+      text-underline-offset:
+        3px;
+
+      transition:
+        color .15s ease,
+        opacity .15s ease;
+
+    }
+
+    @media (hover: hover) {
+
+      .footer a:hover {
+
+        color:
+          var(--text);
+
+        text-decoration:
+          underline;
+
+      }
+
+    }
+
 
     .copyright {
         margin: 0;
@@ -990,6 +1028,13 @@
             <img src="assets/images/social-pixiv.svg" alt="">
             </a>
         </nav>
+
+        <a
+          class="footer-link"
+          href="/privacy/"
+        >
+          プライバシーポリシー
+        </a>
 
         <p class="copyright">
           <a href="/">

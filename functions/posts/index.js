@@ -959,8 +959,40 @@ function renderPage({
 
     
     .footer a {
-      color: inherit;
+      color: #8f8881;
       text-decoration: none;
+    }
+
+
+    .footer-link {
+
+      font-size:
+        10px;
+
+      font-weight:
+        600;
+
+      text-underline-offset:
+        3px;
+
+      transition:
+        color .15s ease,
+        opacity .15s ease;
+
+    }
+
+    @media (hover: hover) {
+
+      .footer a:hover {
+
+        color:
+          var(--text);
+
+        text-decoration:
+          underline;
+
+      }
+
     }
 
 
@@ -1110,6 +1142,14 @@ function renderPage({
 
 
     <footer class="footer">
+
+      <a
+        class="footer-link"
+        href="/privacy/"
+      >
+        プライバシーポリシー
+      </a>
+      
       <a href="/">
         © M2坊
       </a>
