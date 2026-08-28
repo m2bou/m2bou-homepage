@@ -1303,10 +1303,6 @@ function renderPage({
       text-decoration: none;
     }
 
-    .copyright {
-      margin: 0;
-    }
-
     .footer-link {
 
       font-size:
@@ -1640,18 +1636,18 @@ function renderPage({
 
     <footer class="footer">
 
+      <a href="/">
+        © M2坊
+      </a>
+      <span aria-hidden="true">
+        ·
+      </span>
       <a
         class="footer-link"
         href="/privacy/"
       >
         プライバシーポリシー
       </a>
-
-      <p class="copyright">
-        <a href="/">
-          © M2坊
-        </a>
-      </p>
     </footer>
 
 
