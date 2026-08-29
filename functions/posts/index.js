@@ -1,5 +1,6 @@
 const MAX_POSTS = 100;
 
+const GA_ID = "G-6MDHM4W6BH";
 
 export async function onRequestGet(context) {
 
@@ -340,7 +341,80 @@ function renderPage({
     content="${escapeHtml(ogpImageUrl)}"
   >
 
+  <!-- =========================
+      GA4
+  ========================== -->
 
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"
+  ></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag("js", new Date());
+
+    gtag("config", "${GA_ID}");
+
+    var observedReferrer = document.referrer || "";
+    var observedSource = "";
+    var referrerHost = "";
+
+    var urlParams = new URLSearchParams(window.location.search);
+    observedSource = urlParams.get("utm_source") || "";
+
+    if (observedReferrer) {
+      var referrerLink = document.createElement("a");
+      referrerLink.href = observedReferrer;
+      referrerHost = (referrerLink.hostname || "").toLowerCase();
+    }
+
+    if (!observedSource) {
+      if (
+        referrerHost === "t.co" ||
+        referrerHost === "x.com" ||
+        referrerHost.endsWith(".x.com")
+      ) {
+        observedSource = "x";
+      } else if (
+        referrerHost === "iframely.net" ||
+        referrerHost.endsWith(".iframely.net")
+      ) {
+        observedSource = "fanbox_iframely";
+      } else if (
+        referrerHost === "fanbox.cc" ||
+        referrerHost.endsWith(".fanbox.cc")
+      ) {
+        observedSource = "fanbox";
+      } else if (
+        referrerHost === "pixiv.net" ||
+        referrerHost.endsWith(".pixiv.net")
+      ) {
+        observedSource = "pixiv";
+      } else if (referrerHost) {
+        observedSource = referrerHost;
+      } else {
+        observedSource = "no_referrer";
+      }
+    }
+
+    gtag(
+      "event",
+      "post_view",
+      {
+        post_id: "${safeId}",
+        observed_source: observedSource,
+        observed_referrer: observedReferrer.slice(0, 100)
+      }
+    );
+  </script>
+
+  
   <style>
 
     :root {

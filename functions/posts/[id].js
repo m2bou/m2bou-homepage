@@ -518,7 +518,6 @@ function renderPage({
   </script>
 
 
-
   <style>
 
     :root {
