@@ -405,16 +405,16 @@ function renderPage({
 
     gtag(
       "event",
-      "post_view",
+      "page_attribution",
       {
-        post_id: "${safeId}",
+        page_type: "post_index",
         observed_source: observedSource,
         observed_referrer: observedReferrer.slice(0, 100)
       }
     );
   </script>
 
-  
+
   <style>
 
     :root {
