@@ -342,7 +342,7 @@ function renderPage({
   >
 
   <!-- =========================
-      GA4
+     GA4
   ========================== -->
 
   <script
@@ -381,23 +381,28 @@ function renderPage({
         referrerHost.endsWith(".x.com")
       ) {
         observedSource = "x";
+
       } else if (
         referrerHost === "iframely.net" ||
         referrerHost.endsWith(".iframely.net")
       ) {
         observedSource = "fanbox_iframely";
+
       } else if (
         referrerHost === "fanbox.cc" ||
         referrerHost.endsWith(".fanbox.cc")
       ) {
         observedSource = "fanbox";
+
       } else if (
         referrerHost === "pixiv.net" ||
         referrerHost.endsWith(".pixiv.net")
       ) {
         observedSource = "pixiv";
+
       } else if (referrerHost) {
         observedSource = referrerHost;
+
       } else {
         observedSource = "no_referrer";
       }
@@ -405,7 +410,7 @@ function renderPage({
 
     gtag(
       "event",
-      "page_attribution",
+      "post_list_view",
       {
         page_type: "post_index",
         observed_source: observedSource,
@@ -413,7 +418,6 @@ function renderPage({
       }
     );
   </script>
-
 
   <style>
 

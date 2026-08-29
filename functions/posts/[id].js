@@ -445,7 +445,7 @@ function renderPage({
 
 
   <!-- =========================
-      GA4
+     GA4
   ========================== -->
 
   <script
@@ -454,65 +454,115 @@ function renderPage({
   ></script>
 
   <script>
-    window.dataLayer = window.dataLayer || [];
+    window.dataLayer =
+      window.dataLayer || [];
 
     function gtag() {
       dataLayer.push(arguments);
     }
 
-    gtag("js", new Date());
+    gtag(
+      "js",
+      new Date()
+    );
 
-    gtag("config", "${GA_ID}");
+    gtag(
+      "config",
+      "${GA_ID}"
+    );
 
-    var observedReferrer = document.referrer || "";
-    var observedSource = "";
-    var referrerHost = "";
 
-    var urlParams = new URLSearchParams(window.location.search);
-    observedSource = urlParams.get("utm_source") || "";
+    /* =========================
+        流入元の独自判定
+    ========================== */
 
-    if (observedReferrer) {
-      var referrerLink = document.createElement("a");
-      referrerLink.href = observedReferrer;
-      referrerHost = (referrerLink.hostname || "").toLowerCase();
+    const urlParams =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const referrer =
+      document.referrer || "";
+
+    let referrerHost = "";
+
+    try {
+      referrerHost =
+        referrer
+          ? new URL(referrer).hostname
+          : "";
+    } catch {
+      referrerHost = "";
     }
 
+
+    /*
+    * UTMがあれば最優先。
+    * なければリファラーから判定。
+    */
+    let observedSource =
+      urlParams.get("utm_source") || "";
+
     if (!observedSource) {
+
       if (
         referrerHost === "t.co" ||
         referrerHost === "x.com" ||
         referrerHost.endsWith(".x.com")
       ) {
         observedSource = "x";
+
       } else if (
         referrerHost === "iframely.net" ||
-        referrerHost.endsWith(".iframely.net")
+        referrerHost.endsWith(
+          ".iframely.net"
+        )
       ) {
-        observedSource = "fanbox_iframely";
+        observedSource =
+          "fanbox_iframely";
+
       } else if (
         referrerHost === "fanbox.cc" ||
-        referrerHost.endsWith(".fanbox.cc")
+        referrerHost.endsWith(
+          ".fanbox.cc"
+        )
       ) {
         observedSource = "fanbox";
+
       } else if (
         referrerHost === "pixiv.net" ||
-        referrerHost.endsWith(".pixiv.net")
+        referrerHost.endsWith(
+          ".pixiv.net"
+        )
       ) {
         observedSource = "pixiv";
+
       } else if (referrerHost) {
-        observedSource = referrerHost;
+        observedSource =
+          referrerHost;
+
       } else {
-        observedSource = "no_referrer";
+        observedSource =
+          "no_referrer";
       }
     }
+
+
+    /* =========================
+        記事閲覧イベント
+    ========================== */
 
     gtag(
       "event",
       "post_view",
       {
         post_id: "${safeId}",
-        observed_source: observedSource,
-        observed_referrer: observedReferrer.slice(0, 100)
+
+        observed_source:
+          observedSource,
+
+        observed_referrer:
+          referrer || "(empty)"
       }
     );
   </script>
