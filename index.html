@@ -10,6 +10,53 @@
   gtag('js', new Date());
 
   gtag('config', 'G-6MDHM4W6BH');
+
+  (() => {
+    const params = new URLSearchParams(location.search);
+    const referrer = document.referrer || '';
+    const utmSource = params.get('utm_source');
+
+    let observedSource = utmSource;
+
+    if (!observedSource) {
+      let host = '';
+
+      try {
+        host = referrer ? new URL(referrer).hostname : '';
+      } catch {
+        host = '';
+      }
+
+      if (host === 't.co' || host.endsWith('.x.com')) {
+        observedSource = 'x';
+      } else if (
+        host === 'iframely.net' ||
+        host.endsWith('.iframely.net')
+      ) {
+        observedSource = 'fanbox_iframely';
+      } else if (
+        host === 'fanbox.cc' ||
+        host.endsWith('.fanbox.cc')
+      ) {
+        observedSource = 'fanbox';
+      } else if (
+        host === 'pixiv.net' ||
+        host.endsWith('.pixiv.net')
+      ) {
+        observedSource = 'pixiv';
+      } else if (host) {
+        observedSource = host;
+      } else {
+        observedSource = 'unknown';
+      }
+    }
+
+    gtag('event', 'landing_attribution', {
+      observed_source: observedSource,
+      observed_referrer: referrer || '(empty)',
+      landing_url: location.href
+    });
+  })();
 </script>
   
 <meta charset="UTF-8">

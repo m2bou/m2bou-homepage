@@ -445,7 +445,7 @@ function renderPage({
 
 
   <!-- =========================
-       GA4
+      GA4
   ========================== -->
 
   <script
@@ -453,38 +453,118 @@ function renderPage({
     src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"
   ></script>
 
-
   <script>
-
     window.dataLayer =
       window.dataLayer || [];
-
 
     function gtag() {
       dataLayer.push(arguments);
     }
-
 
     gtag(
       "js",
       new Date()
     );
 
-
     gtag(
       "config",
       "${GA_ID}"
     );
 
-    
+
+    /* =========================
+        流入元の独自判定
+    ========================== */
+
+    const urlParams =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const referrer =
+      document.referrer || "";
+
+    let referrerHost = "";
+
+    try {
+      referrerHost =
+        referrer
+          ? new URL(referrer).hostname
+          : "";
+    } catch {
+      referrerHost = "";
+    }
+
+
+    /*
+    * UTMがあれば最優先。
+    * なければリファラーから判定。
+    */
+    let observedSource =
+      urlParams.get("utm_source") || "";
+
+    if (!observedSource) {
+
+      if (
+        referrerHost === "t.co" ||
+        referrerHost === "x.com" ||
+        referrerHost.endsWith(".x.com")
+      ) {
+        observedSource = "x";
+
+      } else if (
+        referrerHost === "iframely.net" ||
+        referrerHost.endsWith(
+          ".iframely.net"
+        )
+      ) {
+        observedSource =
+          "fanbox_iframely";
+
+      } else if (
+        referrerHost === "fanbox.cc" ||
+        referrerHost.endsWith(
+          ".fanbox.cc"
+        )
+      ) {
+        observedSource = "fanbox";
+
+      } else if (
+        referrerHost === "pixiv.net" ||
+        referrerHost.endsWith(
+          ".pixiv.net"
+        )
+      ) {
+        observedSource = "pixiv";
+
+      } else if (referrerHost) {
+        observedSource =
+          referrerHost;
+
+      } else {
+        observedSource =
+          "no_referrer";
+      }
+    }
+
+
+    /* =========================
+        記事閲覧イベント
+    ========================== */
+
     gtag(
       "event",
       "post_view",
       {
-        post_id: "${safeId}"
+        post_id: "${safeId}",
+
+        observed_source:
+          observedSource,
+
+        observed_referrer:
+          referrer || "(empty)"
       }
     );
-
   </script>
 
 
