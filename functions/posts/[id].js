@@ -1107,6 +1107,7 @@ function renderPage({
       position: relative;
       display: inline-block;
       white-space: nowrap;
+      letter-spacing: .08em;
     }
 
 
