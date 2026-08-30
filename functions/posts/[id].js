@@ -1084,64 +1084,111 @@ function renderPage({
     }
 
 
+    ./* =========================
+      BOUNCE TEXT
+    ========================== */
+
     .bounce-wrap {
-
-      position:
-        relative;
-
-      display:
-        inline-block;
-
+      position: relative;
+      display: inline-block;
     }
 
 
-    .bounce-text {
-
-      display:
-        none;
-
-    }
-
-
-    /*
-    JSで文字分割が成功した場合のみ
-    元文章を透明にする
-    */
-
-    .bounce-wrap.is-ready
+    /* 通常は元の文章を表示 */
     .bounce-source {
+      display: inline-block;
+    }
 
-      color:
-        transparent;
+
+    /* JS生成側は最初は隠す */
+    .bounce-text {
+      display: none;
+    }
+
+
+    /* JS生成成功後、元文章は場所だけ残して透明化 */
+    .bounce-wrap.is-ready .bounce-source {
+      color: transparent;
+    }
+
+
+    /* アニメーション文字を元文章の上へ重ねる */
+    .bounce-wrap.is-ready .bounce-text {
+      display: inline-block;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      color: var(--accent);
+
+      white-space: nowrap;
+    }
+
+
+    /* 各文字 */
+    .bounce-wrap.is-ready .bounce-text > span {
+      display: inline-block;
+
+      animation:
+        char-bounce
+        2.8s
+        ease-in-out
+        infinite;
+    }
+
+
+    /* ランダムっぽいタイミング */
+
+    .bounce-text > span:nth-child(1) {
+      animation-delay: .15s;
+    }
+
+    .bounce-text > span:nth-child(2) {
+      animation-delay: 1.05s;
+    }
+
+    .bounce-text > span:nth-child(3) {
+      animation-delay: .42s;
+    }
+
+    .bounce-text > span:nth-child(4) {
+      animation-delay: 1.52s;
+    }
+
+    .bounce-text > span:nth-child(5) {
+      animation-delay: .78s;
+    }
+
+    .bounce-text > span:nth-child(6) {
+      animation-delay: 1.28s;
+    }
+
+    .bounce-text > span:nth-child(7) {
+      animation-delay: .03s;
+    }
+
+
+    @keyframes char-bounce {
+
+      0%,
+      12%,
+      100% {
+        transform: translateY(0);
+      }
+
+      5% {
+        transform: translateY(-.7em);
+      }
 
     }
 
 
-    /*
-    分割した文字列を
-    元文章の上に重ねる
-    */
+    @media (prefers-reduced-motion: reduce) {
 
-    .bounce-wrap.is-ready
-    .bounce-text {
-
-      display:
-        inline-block;
-
-      position:
-        absolute;
-
-      left:
-        0;
-
-      top:
-        0;
-
-      color:
-        var(--accent);
-
-      white-space:
-        nowrap;
+      .bounce-text > span {
+        animation: none;
+      }
 
     }
 
@@ -1231,65 +1278,6 @@ function renderPage({
 
       line-height:
         1;
-
-    }
-
-
-    .bounce-text span {
-      display: inline-block;
-      animation:
-        char-bounce 2.8s
-        ease-in-out
-        infinite;
-    }
-
-    .bounce-text span:nth-child(1) {
-      animation-delay: .15s;
-    }
-
-    .bounce-text span:nth-child(2) {
-      animation-delay: 1.05s;
-    }
-
-    .bounce-text span:nth-child(3) {
-      animation-delay: .42s;
-    }
-
-    .bounce-text span:nth-child(4) {
-      animation-delay: 1.52s;
-    }
-
-    .bounce-text span:nth-child(5) {
-      animation-delay: .78s;
-    }
-
-    .bounce-text span:nth-child(6) {
-      animation-delay: 1.28s;
-    }
-
-    .bounce-text span:nth-child(7) {
-      animation-delay: .03s;
-    }
-
-    @keyframes char-bounce {
-
-      0%,
-      12%,
-      100% {
-        transform: translateY(0);
-      }
-
-      5% {
-        transform: translateY(-.6em);
-      }
-
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      .bounce-text span {
-        animation: none;
-      }
 
     }
 
@@ -1798,9 +1786,9 @@ function renderPage({
   
   <script>
 
-    <!-- =========================
-        GA4
-    ========================== -->
+    /* =========================
+      GA4
+    ========================== */
 
     document
       .querySelectorAll(
