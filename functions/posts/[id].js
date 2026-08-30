@@ -1088,89 +1088,59 @@ function renderPage({
       BOUNCE TEXT
     ========================== */
 
+    .fanbox-card__service {
+      align-self: flex-start;
+
+      margin-bottom: 5px;
+
+      color: var(--accent);
+
+      font-size: 9px;
+
+      font-weight: 900;
+
+      letter-spacing: .06em;
+    }
+
+
     .bounce-wrap {
-
-      display:
-        inline-grid;
-
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
     }
 
-
-    /* 元の文章と
-      アニメーション文字を
-      同じ位置に重ねる */
-
-    .bounce-source,
-    .bounce-text {
-
-      grid-area:
-        1 / 1;
-
-    }
-
-
-    /* 通常時は元文章 */
 
     .bounce-source {
-
-      display:
-        inline-block;
-
+      color: transparent;
     }
 
-
-    /* JS生成前は非表示 */
 
     .bounce-text {
+      position: absolute;
+      top: 0;
+      left: 0;
 
-      visibility:
-        hidden;
+      display: inline-block;
 
-      white-space:
-        nowrap;
-
+      color: var(--accent);
+      white-space: nowrap;
     }
 
 
-    /* JS成功後は元文章を透明化
-      ※場所はそのまま確保 */
-
-    .bounce-wrap.is-ready
-    .bounce-source {
-
-      color:
-        transparent;
-
-    }
-
-
-    /* アニメーション側を表示 */
-
-    .bounce-wrap.is-ready
+    .bounce-wrap:not(.is-ready)
     .bounce-text {
-
-      visibility:
-        visible;
-
-      color:
-        var(--accent);
-
+      visibility: hidden;
     }
 
-
-    /* 1文字ずつ */
 
     .bounce-text > span {
-
-      display:
-        inline-block;
+      display: inline-block;
 
       animation:
         char-bounce
         2.8s
         ease-in-out
         infinite;
-
     }
 
 
