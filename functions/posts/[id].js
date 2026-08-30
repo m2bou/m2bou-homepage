@@ -1089,52 +1089,88 @@ function renderPage({
     ========================== */
 
     .bounce-wrap {
-      position: relative;
-      display: inline-block;
+
+      display:
+        inline-grid;
+
     }
 
 
-    /* 通常は元の文章を表示 */
-    .bounce-source {
-      display: inline-block;
-    }
+    /* 元の文章と
+      アニメーション文字を
+      同じ位置に重ねる */
 
-
-    /* JS生成側は最初は隠す */
+    .bounce-source,
     .bounce-text {
-      display: none;
+
+      grid-area:
+        1 / 1;
+
     }
 
 
-    /* JS生成成功後、元文章は場所だけ残して透明化 */
-    .bounce-wrap.is-ready .bounce-source {
-      color: transparent;
+    /* 通常時は元文章 */
+
+    .bounce-source {
+
+      display:
+        inline-block;
+
     }
 
 
-    /* アニメーション文字を元文章の上へ重ねる */
-    .bounce-wrap.is-ready .bounce-text {
-      display: inline-block;
+    /* JS生成前は非表示 */
 
-      position: absolute;
-      top: 0;
-      left: 0;
+    .bounce-text {
 
-      color: var(--accent);
+      visibility:
+        hidden;
 
-      white-space: nowrap;
+      white-space:
+        nowrap;
+
     }
 
 
-    /* 各文字 */
-    .bounce-wrap.is-ready .bounce-text > span {
-      display: inline-block;
+    /* JS成功後は元文章を透明化
+      ※場所はそのまま確保 */
+
+    .bounce-wrap.is-ready
+    .bounce-source {
+
+      color:
+        transparent;
+
+    }
+
+
+    /* アニメーション側を表示 */
+
+    .bounce-wrap.is-ready
+    .bounce-text {
+
+      visibility:
+        visible;
+
+      color:
+        var(--accent);
+
+    }
+
+
+    /* 1文字ずつ */
+
+    .bounce-text > span {
+
+      display:
+        inline-block;
 
       animation:
         char-bounce
         2.8s
         ease-in-out
         infinite;
+
     }
 
 
