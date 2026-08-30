@@ -1084,6 +1084,37 @@ function renderPage({
     }
 
 
+    .bounce-source {
+
+      position:
+        absolute;
+
+      width:
+        1px;
+
+      height:
+        1px;
+
+      padding:
+        0;
+
+      margin:
+        -1px;
+
+      overflow:
+        hidden;
+
+      clip:
+        rect(0, 0, 0, 0);
+
+      white-space:
+        nowrap;
+
+      border:
+        0;
+
+    }
+
 
     .fanbox-card__title {
 
@@ -1734,11 +1765,12 @@ function renderPage({
 
 
 
-  <!-- =========================
-       GA4
-  ========================== -->
-
+  
   <script>
+
+    <!-- =========================
+        GA4
+    ========================== -->
 
     document
       .querySelectorAll(
@@ -1784,6 +1816,84 @@ function renderPage({
 
 
       });
+
+
+    /* =========================
+      BOUNCE TEXT
+    ========================== */
+
+    function buildBounceText() {
+
+      const source =
+        document.querySelector(
+          "[data-bounce-source]"
+        );
+
+      const visual =
+        document.querySelector(
+          "[data-bounce-visual]"
+        );
+
+      if (!source || !visual) {
+        return;
+      }
+
+      const text =
+        source.textContent.trim();
+
+      visual.replaceChildren();
+
+      Array
+        .from(text)
+        .forEach((character) => {
+
+          const span =
+            document.createElement(
+              "span"
+            );
+
+          span.textContent =
+            character === " "
+              ? "\u00A0"
+              : character;
+
+          visual.appendChild(
+            span
+          );
+
+        });
+
+    }
+
+
+    buildBounceText();
+
+
+    const bounceSource =
+      document.querySelector(
+        "[data-bounce-source]"
+      );
+
+
+    if (bounceSource) {
+
+      const observer =
+        new MutationObserver(
+          () => {
+            buildBounceText();
+          }
+        );
+
+      observer.observe(
+        bounceSource,
+        {
+          childList: true,
+          characterData: true,
+          subtree: true
+        }
+      );
+
+    }
 
   </script>
 
@@ -1893,15 +2003,19 @@ function renderFanboxBlock({
             ${
               slot === "1"
                 ? `
-                  <span class="bounce-text">
-                    <span>ま</span>
-                    <span>ず</span>
-                    <span>は</span>
-                    <span>こ</span>
-                    <span>ち</span>
-                    <span>ら</span>
-                    <span>！</span>
+                  <span
+                    class="bounce-source"
+                    data-bounce-source
+                  >
+                    まずはこちら！
                   </span>
+
+                  <span
+                    class="bounce-text"
+                    data-bounce-visual
+                    translate="no"
+                    aria-hidden="true"
+                  ></span>
                 `
                 : "もっと見たい方はこちら！"
             }
