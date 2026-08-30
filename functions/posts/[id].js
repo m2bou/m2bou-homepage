@@ -1084,34 +1084,64 @@ function renderPage({
     }
 
 
+    .bounce-wrap {
+
+      position:
+        relative;
+
+      display:
+        inline-block;
+
+    }
+
+
+    .bounce-text {
+
+      display:
+        none;
+
+    }
+
+
+    /*
+    JSで文字分割が成功した場合のみ
+    元文章を透明にする
+    */
+
+    .bounce-wrap.is-ready
     .bounce-source {
+
+      color:
+        transparent;
+
+    }
+
+
+    /*
+    分割した文字列を
+    元文章の上に重ねる
+    */
+
+    .bounce-wrap.is-ready
+    .bounce-text {
+
+      display:
+        inline-block;
 
       position:
         absolute;
 
-      width:
-        1px;
-
-      height:
-        1px;
-
-      padding:
+      left:
         0;
 
-      margin:
-        -1px;
+      top:
+        0;
 
-      overflow:
-        hidden;
-
-      clip:
-        rect(0, 0, 0, 0);
+      color:
+        var(--accent);
 
       white-space:
         nowrap;
-
-      border:
-        0;
 
     }
 
@@ -1824,6 +1854,11 @@ function renderPage({
 
     function buildBounceText() {
 
+      const wrap =
+        document.querySelector(
+          "[data-bounce-wrap]"
+        );
+
       const source =
         document.querySelector(
           "[data-bounce-source]"
@@ -1834,14 +1869,28 @@ function renderPage({
           "[data-bounce-visual]"
         );
 
-      if (!source || !visual) {
+
+      if (
+        !wrap ||
+        !source ||
+        !visual
+      ) {
         return;
       }
+
 
       const text =
         source.textContent.trim();
 
-      visual.replaceChildren();
+
+      if (!text) {
+        return;
+      }
+
+
+      const fragment =
+        document.createDocumentFragment();
+
 
       Array
         .from(text)
@@ -1857,11 +1906,26 @@ function renderPage({
               ? "\u00A0"
               : character;
 
-          visual.appendChild(
+          fragment.appendChild(
             span
           );
 
         });
+
+
+      visual.replaceChildren(
+        fragment
+      );
+
+
+      /*
+      ここまで成功して初めて
+      アニメーション表示へ切り替える
+      */
+
+      wrap.classList.add(
+        "is-ready"
+      );
 
     }
 
@@ -1880,9 +1944,12 @@ function renderPage({
       const observer =
         new MutationObserver(
           () => {
+
             buildBounceText();
+
           }
         );
+
 
       observer.observe(
         bounceSource,
@@ -2004,18 +2071,21 @@ function renderFanboxBlock({
               slot === "1"
                 ? `
                   <span
-                    class="bounce-source"
-                    data-bounce-source
+                    class="bounce-wrap"
+                    data-bounce-wrap
                   >
-                    まずはこちら！
-                  </span>
+                    <span
+                      class="bounce-source"
+                      data-bounce-source
+                    >まずはこちら！</span>
 
-                  <span
-                    class="bounce-text"
-                    data-bounce-visual
-                    translate="no"
-                    aria-hidden="true"
-                  ></span>
+                    <span
+                      class="bounce-text"
+                      data-bounce-visual
+                      translate="no"
+                      aria-hidden="true"
+                    ></span>
+                  </span>
                 `
                 : "もっと見たい方はこちら！"
             }
