@@ -1266,10 +1266,16 @@ function renderPostCard(post) {
     escapeHtml(post.description);
 
 
-  const imageUrl =
+  const baseImagePath =
     `/assets/images/posts/${encodeURIComponent(
       post.id
-    )}/ogp.webp`;
+    )}`;
+
+  const imageUrl =
+    `${baseImagePath}/fanbox01.webp`;
+
+  const fallbackImageUrl =
+    `${baseImagePath}/ogp.webp`;
 
 
   return `
@@ -1288,6 +1294,10 @@ function renderPostCard(post) {
           src="${imageUrl}"
           alt=""
           loading="lazy"
+          onerror="
+            this.onerror=null;
+            this.src='${fallbackImageUrl}';
+          "
         >
 
       </div>
