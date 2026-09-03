@@ -1,5 +1,7 @@
 const MAX_POSTS = 100;
 
+const POSTS_PER_PAGE = 20;
+
 const GA_ID = "G-6MDHM4W6BH";
 
 export async function onRequestGet(context) {
@@ -17,6 +19,23 @@ export async function onRequestGet(context) {
     );
 
   }
+
+
+  const url =
+    new URL(request.url);
+
+
+  const pageParam =
+    Number(
+      url.searchParams.get("page") || "1"
+    );
+
+
+  const currentPage =
+    Number.isInteger(pageParam) &&
+    pageParam >= 1
+      ? pageParam
+      : 1;
 
 
   // ========================================
@@ -158,12 +177,52 @@ export async function onRequestGet(context) {
   );
 
 
-  const url =
-    new URL(request.url);
+  const totalPosts =
+    posts.length;
+
+
+  const totalPages =
+    Math.max(
+      1,
+      Math.ceil(
+        totalPosts /
+        POSTS_PER_PAGE
+      )
+    );
+
+
+  if (
+    currentPage >
+    totalPages
+  ) {
+
+    return new Response(
+      "Page not found",
+      {
+        status: 404
+      }
+    );
+
+  }
+
+
+  const startIndex =
+    (
+      currentPage - 1
+    ) * POSTS_PER_PAGE;
+
+
+  const pagedPosts =
+    posts.slice(
+      startIndex,
+      startIndex + POSTS_PER_PAGE
+    );
 
 
   const canonicalUrl =
-    `${url.origin}/posts`;
+    currentPage === 1
+      ? `${url.origin}/posts`
+      : `${url.origin}/posts?page=${currentPage}`;
 
 
   const ogpImageUrl =
@@ -181,9 +240,11 @@ export async function onRequestGet(context) {
 
   const html =
     renderPage({
-      posts,
+      posts: pagedPosts,
       canonicalUrl,
       ogpImageUrl,
+      currentPage,
+      totalPages,
       linksMeta
     });
 
@@ -219,6 +280,8 @@ function renderPage({
   posts,
   canonicalUrl,
   ogpImageUrl,
+  currentPage,
+  totalPages,
   linksMeta
 }) {
 
@@ -242,6 +305,11 @@ function renderPage({
 
       `;
 
+  const paginationHtml =
+    renderPagination({
+      currentPage,
+      totalPages
+    });
 
   return `<!doctype html>
 
@@ -514,6 +582,127 @@ function renderPage({
 
       padding:
         32px 0 64px;
+
+    }
+
+
+    /* =========================
+      PAGINATION
+    ========================== */
+
+    .pagination {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr
+        auto
+        1fr;
+
+      align-items:
+        center;
+
+      gap:
+        10px;
+
+      margin-top:
+        24px;
+
+    }
+
+
+    .pagination-button {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      min-height:
+        44px;
+
+      padding:
+        8px 14px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--line);
+
+      border-radius:
+        12px;
+
+      color:
+        #57514c;
+
+      font-size:
+        11px;
+
+      font-weight:
+        700;
+
+      text-decoration:
+        none;
+
+    }
+
+
+    .pagination-button:last-child {
+
+      justify-self:
+        stretch;
+
+    }
+
+
+    .pagination-button--disabled {
+
+      opacity:
+        .35;
+
+      cursor:
+        default;
+
+    }
+
+
+    .pagination-status {
+
+      min-width:
+        48px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        10px;
+
+      font-weight:
+        700;
+
+      text-align:
+        center;
+
+    }
+
+
+    @media (hover: hover) {
+
+      a.pagination-button:hover {
+
+        background:
+          #faf9f7;
+
+        border-color:
+          #d9d3cc;
+
+      }
 
     }
 
@@ -1160,10 +1349,10 @@ function renderPage({
 
 
     <div class="post-list">
-
       ${postListHtml}
-
     </div>
+
+    ${paginationHtml}
 
 
     <section class="doujin-section">
@@ -1246,15 +1435,111 @@ function renderPage({
 }
 
 
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+function renderPagination({
+  currentPage,
+  totalPages
+}) {
+
+  if (
+    totalPages <= 1
+  ) {
+    return "";
+  }
+
+
+  const previousUrl =
+    currentPage === 2
+      ? "/posts"
+      : `/posts?page=${currentPage - 1}`;
+
+
+  const nextUrl =
+    `/posts?page=${currentPage + 1}`;
+
+
+  return `
+
+    <nav
+      class="pagination"
+      aria-label="投稿一覧のページ"
+    >
+
+
+      ${
+        currentPage > 1
+
+          ? `
+            <a
+              class="pagination-button"
+              href="${previousUrl}"
+            >
+              ‹ 前へ
+            </a>
+          `
+
+          : `
+            <span
+              class="
+                pagination-button
+                pagination-button--disabled
+              "
+            >
+              ‹ 前へ
+            </span>
+          `
+      }
+
+
+      <span class="pagination-status">
+
+        ${currentPage}
+        /
+        ${totalPages}
+
+      </span>
+
+
+      ${
+        currentPage < totalPages
+
+          ? `
+            <a
+              class="pagination-button"
+              href="${nextUrl}"
+            >
+              次へ ›
+            </a>
+          `
+
+          : `
+            <span
+              class="
+                pagination-button
+                pagination-button--disabled
+              "
+            >
+              次へ ›
+            </span>
+          `
+      }
+
+
+    </nav>
+
+  `;
+
+}
+
 
 /* =========================================================
    POST CARD
 ========================================================= */
 
 function renderPostCard(post) {
-
-  const safeId =
-    escapeHtml(post.id);
 
   const safeTitle =
     escapeHtml(post.title);
